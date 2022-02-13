@@ -43,6 +43,7 @@
 <body>
     <div id="header_container">
         <div id="header">VS POKEMON WORDLE</div>
+        <div id="header_btn_help" class="material-icons-outlined btn_help">help_outline</div>
     </div>
     <div id="header_container2">
         <div id="header_container2-2">
@@ -61,6 +62,7 @@
         </div>
 
         <div id="login" class="modal">
+            <div id="login_btn_help" class="material-icons-outlined btn_help">help_outline</div>
             <input id="txt_user_name" class="textbox login_obj" type="text" name="user_name" placeholder="ユーザ名" maxlength="8" />
             <input id="txt_room_code" class="textbox login_obj" type="number" name="room_code" placeholder="4桁の部屋コード" oninput="slice_max_length(this, 4)" pattern="\d*" value={{ room_code }}>
             <input id="btn_join" type="submit" value="JOIN" class="btn login_obj">
@@ -128,49 +130,50 @@
     </div>
 
 
-    <!--<div id="helpt_container" class="modal_container transparent">-->
-    <div id="help_container" class="modal_container">
+    <div id="help_container" class="modal_container transparent">
         <div class="gray_container">
         </div>
 
         <div id="help" class="modal">
             <div id="help_header">
-                <div id="help_btn_close" type="submit" value="OK" class="material-icons-outlined">close</div>
-                <div>HOT TO PLAY</div>
+                <div id="help_btn_close" class="material-icons-outlined">close</div>
+                <div id="help_header_title">HOT TO PLAY</div>
             </div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">対戦相手が退出しました</div>
-            <div class="help_msg">最下段</div>
+            <div id="help_body">
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">対戦相手が退出しました</div>
+                <div class="help_msg">最下段</div>
+            </div>
         </div>
     </div>
 </body>

@@ -15,7 +15,7 @@ input, button, select, textarea {
 
 #header {
     height: 45px;
-    width: 450px;
+    width: 100%;
     text-align: center;
     font-size: 33px;
     font-weight: 700;
@@ -39,6 +39,20 @@ input, button, select, textarea {
         height: 30px;
         width: 70px;
     }
+
+#header_btn_help {
+    position: absolute;
+    right: 0;
+    font-size: 28px;
+    color: #000000;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: all .3s;
+    padding: 2px;
+    margin: 6px 4px 0px 0px;
+}
+
 
 .info {
     height: 20px;
@@ -253,6 +267,10 @@ input:focus::placeholder {
     text-shadow: 3px 3px 0 #4695B2 !important;
 }
 
+#login {
+    padding-top: 20px;
+}
+
 .modal_container {
     position: fixed;
     top: 0;
@@ -384,10 +402,9 @@ input[type="number"]::-webkit-inner-spin-button {
 
 
 #help {
-    padding: 0px 40px 20px 40px;
+    padding: 0;
     max-height: 90%;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
+    max-width: 325px
 }
 
 #help_header {
@@ -396,41 +413,74 @@ input[type="number"]::-webkit-inner-spin-button {
     align-items: center;
     justify-content: center;
     position: relative;
-    height: 45px;
-    /*    width: 450px;*/
-    /*    text-align: center;*/
-    /*    font-size: 33px;*/
-    font-weight: 700;
+}
+
+#help_header_title {
     border-bottom: 2px solid rgb(225, 225, 225);
+    font-size: 21px;
+    font-weight: 700;
+    width: 95%;
+    text-align: center;
+    height: 28px;
+    margin-top: 6px;
 }
 
 #help_btn_close {
     position: absolute;
     right: 0;
     font-size: 24px;
-    /*    width: 80px;*/
-    /*    height: 36px;*/
     color: #000000;
-    /*    background-color: #D6D6D6;*/
     border-radius: 50%;
     border: none;
     cursor: pointer;
     transition: all .3s;
-    z-index: 10;
-    padding: 4px;
+    padding: 2px;
+    margin: 2px 4px 0px 0px;
 }
 
     #help_btn_close:hover {
         background-color: #DEDEDE;
     }
 
+#help_body {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    width: calc(100% - 16px);
+    margin: 8px 0px 0px 16px;
+}
 
+.btn_help {
+    font-size: 32px !important;
+    color: #000000;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: all .3s;
+    padding: 2px;
+}
 
+    .btn_help:hover {
+        background-color: #DEDEDE;
+    }
 
 
 @media (max-width: 700px) {
     #header {
-        font-size: 26px;
+        font-size: 20px;
+        height: 26px;
+    }
+
+    #header_btn_help {
+        position: absolute;
+        right: 0;
+        font-size: 24px !important;
+        color: #000000;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        transition: all .3s;
+        padding: 2px;
+        margin: -1px 0px 0px 0px;
     }
 
     #btn {
