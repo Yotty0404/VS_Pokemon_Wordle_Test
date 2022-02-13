@@ -404,7 +404,7 @@ input[type="number"]::-webkit-inner-spin-button {
 #help {
     padding: 0;
     max-height: 90%;
-    max-width: 350px;
+    max-width: 420px;
     width: 85%;
 }
 
@@ -446,8 +446,8 @@ input[type="number"]::-webkit-inner-spin-button {
 #help_body {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    width: calc(100% - 16px);
-    margin: 8px 0px 0px 16px;
+    width: 100%;
+    margin-top: 8px;
 }
 
 .btn_help {
@@ -463,6 +463,19 @@ input[type="number"]::-webkit-inner-spin-button {
     .btn_help:hover {
         background-color: #DEDEDE;
     }
+
+
+.help_msg_subject {
+    font-size: 17px;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.help_msg {
+    font-size: 16px;
+    margin-left: 10px;
+}
+
 
 
 @media (max-width: 700px) {
