@@ -1,0 +1,480 @@
+﻿html {
+    font-family: 'メイリオ', 'Meiryo', sans-serif;
+}
+
+input, button, select, textarea {
+    -webkit-appearance: none;
+    padding: 0;
+}
+
+#header_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#header {
+    height: 45px;
+    width: 450px;
+    text-align: center;
+    font-size: 33px;
+    font-weight: 700;
+    border-bottom: 2px solid rgb(225, 225, 225);
+}
+
+#header_container2 {
+    display: flex;
+    justify-content: center;
+}
+
+#header_container2-2 {
+    height: 40px;
+    width: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    #header_container2-2 .btn {
+        height: 30px;
+        width: 70px;
+    }
+
+.info {
+    height: 20px;
+    margin: 0px;
+}
+
+#board_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 90vw;
+    max-width: 500px;
+    margin: 0 auto;
+    height: calc(100vh - 243px);
+}
+
+.board {
+    width: 50%;
+}
+
+.player {
+    height: 20px;
+    text-align: center;
+    background-color: rgb(225, 225, 225);
+}
+
+.answer {
+    height: 40px;
+    background-color: rgb(225, 225, 225);
+    padding-bottom: 2px;
+    margin-bottom: 2px;
+}
+
+.row_l {
+    display: flex;
+    justify-content: center;
+}
+
+.row_r {
+    display: flex;
+    justify-content: center;
+}
+
+.answer_tile {
+    border: solid 1px #838383 !important;
+}
+
+.tile {
+    font-weight: bold;
+    border: solid 1px transparent;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    transition: all 0.5s ease;
+    background-color: white;
+}
+
+.tile_disappear {
+    transform: rotate3d(-1, 0, 0, 100deg); /*奥行きをもたせて回転*/
+    opacity: 0;
+}
+
+.predict {
+    height: calc(100vh - 260px);
+    overflow-y: scroll;
+}
+
+    .predict::-webkit-scrollbar {
+        display: none;
+    }
+
+#input_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+}
+
+.textbox {
+    border: solid 2px #000000;
+    background-color: #F0F0F0;
+    border-radius: 3px;
+    font-size: 22px;
+    padding: 4px;
+    transform: translateY(2px);
+}
+
+    .textbox:disabled {
+        background: #AAAAAA;
+        cursor: default;
+    }
+
+        .textbox:disabled::placeholder {
+            color: #C0C0C0;
+        }
+
+input:focus::placeholder {
+    color: transparent;
+}
+
+::placeholder {
+    color: #C5C5C5;
+}
+
+.btn {
+    font-size: 16px;
+    width: 80px;
+    height: 36px;
+    color: #000000;
+    background-color: #D6D6D6;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all .3s;
+    z-index: 10;
+}
+
+    .btn:hover {
+        background-color: #AAAAAA;
+    }
+
+    .btn:disabled {
+        color: #C0C0C0;
+        background: #AAAAAA;
+        cursor: default;
+    }
+
+#battle_start_container {
+    /*    position: fixed;*/
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 85%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+#battle_start {
+    width: 560px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 60px;
+    color: rgba(0, 0, 0, 0);
+    text-shadow: 3px 3px 0 #9db;
+    -webkit-text-stroke: 1px #888;
+    text-stroke: 1px #888;
+    background-color: rgba(255, 255, 255, 0.91);
+    transition: all .5s;
+}
+
+.transparent {
+    opacity: 0;
+    visibility: collapse;
+}
+
+.collapse {
+    visibility: collapse;
+}
+
+#msg_container {
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 85%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+#msg {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(0, 0, 0);
+    transition: all .5s;
+    padding: 5px 10px 2px 10px;
+    border-radius: 8px;
+}
+
+.judge0 {
+    background-color: rgb(141, 141, 141);
+    color: white;
+}
+
+.judge1 {
+    background-color: rgb(73, 185, 77);
+    color: white;
+}
+
+.judge2 {
+    background-color: rgb(211, 198, 79);
+    color: white;
+}
+
+.win {
+    text-shadow: 3px 3px 0 #EC654A !important;
+}
+
+.lose {
+    text-shadow: 3px 3px 0 #4695B2 !important;
+}
+
+.modal_container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    transition: all .5s;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+    padding: 40px;
+    max-width: 300px;
+    width: 70%;
+    z-index: 120;
+}
+
+.login_obj {
+    width: 85%;
+    margin: 10px;
+}
+
+.gray_container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 110;
+}
+
+.txt_error {
+    background-color: rgb(255, 225, 232);
+    border-color: rgb(249, 28, 82);
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#yajirushi_container {
+    width: 90vw;
+    max-width: 500px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+#img_yajirushi {
+    margin-top: 7px;
+    width: 48px;
+    transition: all 0.5s ease;
+}
+
+.turn180 {
+    transform: rotate(180deg);
+}
+
+.turn360 {
+    transform: rotate(360deg);
+}
+
+.upper_anser {
+    position: absolute;
+    border-radius: 2px;
+    width: 191px;
+    background-color: rgba(58, 117, 59, 0.41);
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .3s;
+    display: inline-block;
+    color: #ffffff; /* 文字の色 */
+    font-size: 16px; /* 文字のサイズ */
+    letter-spacing: 1px; /* 文字間 */
+    text-shadow: 5px 5px 8px #999999, -5px 5px 8px #999999, 5px -5px 8px #999999, -5px -5px 8px #999999, 5px 0px 8px #999999, 0px 5px 8px #999999, -5px 0px 8px #999999, 0px -5px 8px #999999; /* 文字の影 */
+}
+
+    .upper_anser:hover {
+        background-color: rgba(43, 90, 44, 0.7);
+    }
+
+.material-icons.icon {
+    font-size: 28px;
+    font-family: 'Material Icons Outlined';
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+#opponent_exit_msg {
+    font-size: 20px;
+}
+
+#room_info_container {
+    display: flex;
+}
+
+.snsicon {
+    font-size: 24px;
+    color: rgb(109, 109, 109);
+    text-decoration: none;
+    margin-left: 7px;
+    transition: all .3s;
+}
+
+#twitter:hover {
+    color: rgb(89, 138, 212);
+}
+
+#line:hover {
+    color: rgb(6,199,85);
+}
+
+
+
+
+#help {
+    padding: 0px 40px 20px 40px;
+    max-height: 90%;
+}
+
+#help_header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 45px;
+    /*    width: 450px;*/
+    /*    text-align: center;*/
+    /*    font-size: 33px;*/
+    font-weight: 700;
+    border-bottom: 2px solid rgb(225, 225, 225);
+}
+
+#help_btn_close {
+    position: absolute;
+    right: 0;
+    font-size: 24px;
+    /*    width: 80px;*/
+    /*    height: 36px;*/
+    color: #000000;
+    /*    background-color: #D6D6D6;*/
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: all .3s;
+    z-index: 10;
+    padding: 4px;
+}
+
+    #help_btn_close:hover {
+        background-color: #DEDEDE;
+    }
+
+
+
+
+
+@media (max-width: 700px) {
+    #header {
+        font-size: 26px;
+    }
+
+    #btn {
+        font-size: 14px;
+        width: 55px;
+    }
+
+    #header_container2-2 .btn {
+        font-size: 14px;
+        height: 30px;
+        width: 55px;
+    }
+
+    .answer {
+        height: 32px;
+    }
+
+    .tile {
+        height: 23px;
+        width: 23px;
+    }
+
+    .row_l {
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 4px;
+    }
+
+    .row_r {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 4px;
+    }
+
+    #img_yajirushi {
+        margin-top: 7px;
+        width: 34px;
+    }
+
+    .upper_anser {
+        width: 145px;
+        height: 29px;
+        line-height: 29px;
+    }
+
+    #txt_poke_name {
+        width: 250px;
+    }
+}

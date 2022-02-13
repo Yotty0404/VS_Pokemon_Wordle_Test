@@ -4,13 +4,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>fd03c786-8de5-4d83-97cd-c23ff9f2a647</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>VS_Pokemon_Wordle_Test.py</StartupFile>
+    <StartupFile>app.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>VS_Pokemon_Wordle_Test</Name>
     <RootNamespace>VS_Pokemon_Wordle_Test</RootNamespace>
+    <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +22,24 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="VS_Pokemon_Wordle_Test.py" />
+    <Folder Include="static\" />
+    <Folder Include="static\css\" />
+    <Folder Include="static\img\" />
+    <Folder Include="static\json\" />
+    <Folder Include="static\js\" />
+    <Folder Include="templates\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="static\css\style.css" />
+    <Content Include="static\img\192.png" />
+    <Content Include="static\img\32.png" />
+    <Content Include="static\img\yajirushi.png" />
+    <Content Include="static\json\poke.json" />
+    <Content Include="static\js\script.js" />
+    <Content Include="templates\home.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="app.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

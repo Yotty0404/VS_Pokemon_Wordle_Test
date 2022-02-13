@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <title>VS Pokémon Wordle</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="相手のポケモンを予想して当てる「Wordle」風 対戦ゲーム。">
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="static/js/script.js" charset="shift_jis"></script>
+    <script src="https://kit.fontawesome.com/f1fd2cf3a8.js" crossorigin="anonymous"></script>
+    <link href="static/img/32.png" rel="icon shortcut" sizes="3232">
+    <link href="static/img/192.png" rel="apple-touch-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons%7CMaterial+Icons+Outlined" rel="stylesheet">
+    <!-- FB Meta Tags -->
+    <meta property="og:url" content="https://www.vs-pokemon-wordle.com">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="VS Pokémon Wordle">
+    <meta property="og:description" content="対戦型ポケモンワードル">
+    <meta property="og:site_name" content="VS Pokémon Wordle">
+    <meta property="og:image" content="https://vs-pokemon-wordle.herokuapp.com/static/img/192.png">
+    <meta property="og:local" content="ja_JP">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@YottyPG">
+    <meta name="twitter:description" content="相手のポケモンを予想して当てる「Wordle」風 対戦ゲーム。">
+    <meta name="twitter:title" content="VS Pokémon Wordle">
+    <meta name="twitter:image" content="https://vs-pokemon-wordle.herokuapp.com/static/img/192.png">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KP8MHDTX4E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-KP8MHDTX4E');
+    </script>
+</head>
+<body>
+    <div id="header_container">
+        <div id="header">VS POKEMON WORDLE</div>
+    </div>
+    <div id="header_container2">
+        <div id="header_container2-2">
+            <input id="btn_exit" type="button" value="EXIT" class="btn" disabled="disabled">
+            <div id="room_info_container">
+                <p id="room_info" class="info"></p>
+                <a id="twitter" class="fa-brands fa-twitter-square snsicon collapse" href="https://twitter.com/intent/tweet?text=部屋コード%0a{room_code}%0a%0ahttps://www.vs-pokemon-wordle.com/?room_code={room_code}%0a%0a&hashtags=VsPokemonWordle" onClick="window.open(encodeURI(decodeURI(this.href)), 'tweetwindow', 'width=650, height=470, personalbar=0, toolbar=0, scrollbars=1, sizable=1'); return false;" rel="nofollow"></a>
+                <a id="line" class="fa-brands fa-line snsicon collapse" href="http://line.me/R/msg/text/?部屋コード%0a{room_code}%0a%0ahttps://www.vs-pokemon-wordle.com/?room_code={room_code}"></a>
+            </div>
+            <input id="btn_reset" type="button" value="RESET" class="btn" disabled="disabled">
+        </div>
+    </div>
+
+    <div id="login_container" class="modal_container">
+        <div class="gray_container">
+        </div>
+
+        <div id="login" class="modal">
+            <input id="txt_user_name" class="textbox login_obj" type="text" name="user_name" placeholder="ユーザ名" maxlength="8" />
+            <input id="txt_room_code" class="textbox login_obj" type="number" name="room_code" placeholder="4桁の部屋コード" oninput="slice_max_length(this, 4)" pattern="\d*" value={{ room_code }}>
+            <input id="btn_join" type="submit" value="JOIN" class="btn login_obj">
+        </div>
+    </div>
+
+    <div id="board_container">
+        <div id="yajirushi_container">
+            <img id="img_yajirushi" src="static/img/yajirushi.png">
+        </div>
+        <div id="board_l" class="board">
+            <div id="player1_name" class="player"></div>
+            <div id="answer_l" class="answer row_l">
+                <div class="tile answer_tile"></div>
+                <div class="tile answer_tile"></div>
+                <div class="tile answer_tile"></div>
+                <div class="tile answer_tile"></div>
+                <div class="tile answer_tile"></div>
+                <div id="upper_answer_l" class="upper_anser transparent">答えを見る</div>
+            </div>
+            <div id="predict_l_container" class="predict">
+            </div>
+        </div>
+        <div id="board_r" class="board">
+            <div id="player2_name" class="player"></div>
+            <div id="answer_r" class="answer row_r">
+                <div class="tile answer_tile"></div>
+                <div class="tile answer_tile"></div>
+                <div class="tile answer_tile"></div>
+                <div class="tile answer_tile"></div>
+                <div class="tile answer_tile"></div>
+                <div id="upper_answer_r" class="upper_anser transparent">答えを見る</div>
+            </div>
+            <div id="predict_r_container" class="predict">
+            </div>
+        </div>
+    </div>
+
+    <div id="input_container">
+        <div>
+            <input id="txt_poke_name" class="textbox" type="text" placeholder="ポケモンの名前" maxlength="5" disabled />
+            <input id="btn" type="button" value="ENTER" class="btn" disabled>
+        </div>
+    </div>
+
+    <div id="battle_start_container" class="collapse">
+        <div id="battle_start" class="transparent">
+            BATTLE START
+        </div>
+    </div>
+
+    <div id="msg_container" class="collapse">
+        <div id="msg" class="transparent">
+        </div>
+    </div>
+
+    <div id="opponent_exit_container" class="modal_container transparent">
+        <div class="gray_container">
+        </div>
+
+        <div id="opponent_exit" class="modal">
+            <div id="opponent_exit_msg"><span class="material-icons icon">report_problem</span>対戦相手が退出しました</div>
+            <input id="btn_opponent_exit" type="submit" value="OK" class="btn login_obj">
+        </div>
+    </div>
+
+
+    <!--<div id="helpt_container" class="modal_container transparent">-->
+    <div id="help_container" class="modal_container">
+        <div id="help_container" class="gray_container">
+        </div>
+
+        <div id="help" class="modal">
+            <div id="help_header">
+                <div id="help_btn_close" type="submit" value="OK" class="material-icons-outlined">close</div>
+                <div>HOT TO PLAY</div>
+            </div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">対戦相手が退出しました</div>
+            <div class="help_msg">最下段</div>
+        </div>
+    </div>
+</body>
+</html>
