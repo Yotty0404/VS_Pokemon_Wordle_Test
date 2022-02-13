@@ -402,7 +402,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 
 #help {
-    padding: 0;
+    padding: 0px 0px 5px 0px;
     max-height: 90%;
     max-width: 420px;
     width: 85%;
@@ -469,7 +469,7 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: 15px;
     font-weight: 700;
     margin-left: 10px;
-    margin:12px 0px 0px 10px;
+    margin: 12px 0px 0px 10px;
 }
 
 .help_msg {
