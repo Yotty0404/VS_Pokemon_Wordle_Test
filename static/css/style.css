@@ -50,7 +50,7 @@ input, button, select, textarea {
     cursor: pointer;
     transition: all .3s;
     padding: 2px;
-    margin: 6px 4px 0px 0px;
+    margin: 6px 10px 0px 0px;
 }
 
 
@@ -471,16 +471,8 @@ input[type="number"]::-webkit-inner-spin-button {
     }
 
     #header_btn_help {
-        position: absolute;
-        right: 0;
         font-size: 24px !important;
-        color: #000000;
-        border-radius: 50%;
-        border: none;
-        cursor: pointer;
-        transition: all .3s;
-        padding: 2px;
-        margin: -1px 0px 0px 0px;
+        margin: 0px 6px 0px 0px;
     }
 
     #btn {
@@ -528,5 +520,10 @@ input[type="number"]::-webkit-inner-spin-button {
 
     #txt_poke_name {
         width: 250px;
+    }
+
+    #help_header_title {
+        font-size: 19px;
+        height: 26px;
     }
 }
