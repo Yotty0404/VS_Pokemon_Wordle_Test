@@ -404,7 +404,8 @@ input[type="number"]::-webkit-inner-spin-button {
 #help {
     padding: 0;
     max-height: 90%;
-    max-width: 325px
+    max-width: 350px;
+    width: 85%;
 }
 
 #help_header {
