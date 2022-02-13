@@ -121,6 +121,7 @@ input, button, select, textarea {
 .predict {
     height: calc(100vh - 260px);
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
     .predict::-webkit-scrollbar {
