@@ -584,11 +584,11 @@ input[type="number"]::-webkit-inner-spin-button {
     }
 
     #header_icons {
-        margin: -12px 6px 0px 0px;
+        margin: -14px 6px 0px 0px;
     }
 
     #header_btn_help {
-        margin-right: -8px;
+        margin-right: -14px;
     }
 
     .btn_icon {
