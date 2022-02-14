@@ -43,7 +43,10 @@
 <body>
     <div id="header_container">
         <div id="header">VS POKEMON WORDLE</div>
-        <div id="header_btn_help" class="material-icons-outlined btn_help">help_outline</div>
+        <div id="header_icons">
+            <div id="header_btn_help" class="material-icons-outlined btn_help btn_icon">help_outline</div>
+            <div id="header_btn_settings" class="material-icons-outlined btn_settings btn_icon">settings</div>
+        </div>
     </div>
     <div id="header_container2">
         <div id="header_container2-2">
@@ -62,7 +65,10 @@
         </div>
 
         <div id="login" class="modal">
-            <div id="login_btn_help" class="material-icons-outlined btn_help">help_outline</div>
+            <div id="login_icons">
+                <div id="login_btn_help" class="material-icons-outlined btn_help btn_icon">help_outline</div>
+                <div id="login_btn_settings" class="material-icons-outlined btn_settings btn_icon">settings</div>
+            </div>
             <input id="txt_user_name" class="textbox login_obj" type="text" name="user_name" placeholder="ユーザー名" maxlength="8" />
             <input id="txt_room_code" class="textbox login_obj" type="number" name="room_code" placeholder="4桁の部屋コード" oninput="slice_max_length(this, 4)" pattern="\d*" value={{ room_code }}>
             <input id="btn_join" type="submit" value="JOIN" class="btn login_obj">
@@ -165,11 +171,7 @@
         </div>
     </div>
 
-
-
-
-    <div id="settings_container" class="modal_container">
-        <!--<div id="settings_container" class="modal_container transparent">-->
+    <div id="settings_container" class="modal_container transparent">
         <div class="gray_container">
         </div>
 
@@ -182,8 +184,8 @@
                 <div id="settings_body">
                     <div class="settings_msg_subject">ハイコントラストモード</div>
                 </div>
-                <div class="toggle">
-                    <input type="checkbox" name="check" />
+                <div id="tgl_high_contrast_mode" class="toggle">
+                    <input id="chk_high_contrast_mode" type="checkbox" name="check" />
                 </div>
             </div>
             <div id="example_tiles_container">
@@ -194,13 +196,9 @@
                 <div class="example_obj">位置:×</div>
                 <div class="example_obj">位置:×</div>
 
-                <div class="example_obj">
+                <div id="example_row">
                     <div class="tile answer_tile"></div>
-                </div>
-                <div class="example_obj">
                     <div class="tile answer_tile"></div>
-                </div>
-                <div class="example_obj">
                     <div class="tile answer_tile"></div>
                 </div>
             </div>

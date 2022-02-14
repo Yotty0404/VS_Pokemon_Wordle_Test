@@ -40,17 +40,17 @@ input, button, select, textarea {
         width: 70px;
     }
 
-#header_btn_help {
+#header_icons {
     position: absolute;
     right: 0;
-    font-size: 28px;
     color: #000000;
     border-radius: 50%;
     border: none;
     cursor: pointer;
     transition: all .3s;
     padding: 2px;
-    margin: 6px 10px 0px 0px;
+    margin: 2px 10px 0px 0px;
+    font-size: 32px !important;
 }
 
 .info {
@@ -258,6 +258,21 @@ input:focus::placeholder {
     color: white;
 }
 
+.judge0_hc {
+    background-color: rgb(141, 141, 141);
+    color: white;
+}
+
+.judge1_hc {
+    background-color: rgb(245,121,58);
+    color: white;
+}
+
+.judge2_hc {
+    background-color: rgb(133,192,249);
+    color: white;
+}
+
 .win {
     text-shadow: 3px 3px 0 #EC654A !important;
 }
@@ -423,7 +438,6 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .window_btn_close {
-    /*    #help_btn_close {*/
     position: absolute;
     right: 0;
     font-size: 24px;
@@ -447,7 +461,7 @@ input[type="number"]::-webkit-inner-spin-button {
     margin-top: 8px;
 }
 
-.btn_help {
+.btn_icon {
     font-size: 32px !important;
     color: #000000;
     border-radius: 50%;
@@ -457,7 +471,7 @@ input[type="number"]::-webkit-inner-spin-button {
     padding: 2px;
 }
 
-    .btn_help:hover {
+    .btn_icon:hover {
         background-color: #DEDEDE;
     }
 
@@ -473,11 +487,15 @@ input[type="number"]::-webkit-inner-spin-button {
     margin-left: 10px;
 }
 
+#settings {
+    max-width: 380px;
+}
+
 .settings_msg_subject {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
     margin-left: 10px;
-    margin: 12px 0px 0px 10px;
+    margin: 14px 0px 0px 10px;
 }
 
 .settings_body_container {
@@ -541,7 +559,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 #example_tiles_container {
     display: flex;
-    width: 70%;
+    width: 60%;
     justify-content: space-between;
     flex-wrap: wrap;
 }
@@ -553,16 +571,28 @@ input[type="number"]::-webkit-inner-spin-button {
     justify-content: center;
 }
 
+#example_row {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
 
 @media (max-width: 700px) {
     #header {
-        font-size: 20px;
+        font-size: 18px;
         height: 26px;
     }
 
+    #header_icons {
+        margin: -12px 6px 0px 0px;
+    }
+
     #header_btn_help {
+        margin-right: -8px;
+    }
+
+    .btn_icon {
         font-size: 24px !important;
-        margin: 0px 6px 0px 0px;
     }
 
     #btn {
