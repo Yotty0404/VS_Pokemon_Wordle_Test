@@ -37,7 +37,7 @@
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
-        gtag('config', 'G-KP8MHDTX4E');
+        gtag('settings', 'G-KP8MHDTX4E');
     </script>
 </head>
 <body>
@@ -134,12 +134,12 @@
         <div class="gray_container">
         </div>
 
-        <div id="help" class="modal">
-            <div id="help_header">
-                <div id="help_btn_close" class="material-icons-outlined">close</div>
-                <div id="help_header_title">HOW TO PLAY</div>
+        <div id="help" class="modal window">
+            <div id="help_header" class="window_header">
+                <div id="help_btn_close" class="material-icons-outlined window_btn_close">close</div>
+                <div id="help_header_title" class="window_header_title">HOW TO PLAY</div>
             </div>
-            <div id="help_body">
+            <div id="help_body" class="window_body">
                 <div class="help_msg">相手のポケモンを当てる対戦型Wordleです。</div>
 
                 <div class="help_msg_subject">ログインの仕方</div>
@@ -158,6 +158,9 @@
                 <div class="help_msg_subject">お問い合わせ</div>
                 <a class="help_msg" href="https://twitter.com/YottyPG" target="_blank" rel="noopener noreferrer">@YottyPG</a>
                 <div class="help_msg">要望やバグ報告などあれば、こちらのTwitterアカウントまでお気軽にご連絡ください。</div>
+
+                <div class="help_msg_subject">更新履歴</div>
+                <div class="help_msg"><a href="https://qiita.com/YottyPG/items/c4488fef8ad09024a181" target="_blank" rel="noopener noreferrer">こちらの記事</a>からご確認ください。</div>
             </div>
         </div>
     </div>
@@ -165,35 +168,41 @@
 
 
 
-    <!--<div id="config_container" class="modal_container">-->
-    <div id="config_container" class="modal_container transparent">
+    <div id="settings_container" class="modal_container">
+        <!--<div id="settings_container" class="modal_container transparent">-->
         <div class="gray_container">
         </div>
 
-        <div id="config" class="modal">
-            <div id="config_header">
-                <div id="config_btn_close" class="material-icons-outlined">close</div>
-                <div id="config_header_title">HOW TO PLAY</div>
+        <div id="settings" class="modal window">
+            <div id="settings_header" class="window_header">
+                <div id="settings_btn_close" class="material-icons-outlined window_btn_close">close</div>
+                <div id="settings_header_title" class="window_header_title">SETTINGS</div>
             </div>
-            <div id="config_body">
-                <div class="config_msg">相手のポケモンを当てる対戦型Wordleです。</div>
+            <div class="settings_body_container window_body">
+                <div id="settings_body">
+                    <div class="settings_msg_subject">ハイコントラストモード</div>
+                </div>
+                <div class="toggle">
+                    <input type="checkbox" name="check" />
+                </div>
+            </div>
+            <div id="example_tiles_container">
+                <div class="example_obj">文字:○</div>
+                <div class="example_obj">文字:○</div>
+                <div class="example_obj">文字:×</div>
+                <div class="example_obj">位置:○</div>
+                <div class="example_obj">位置:×</div>
+                <div class="example_obj">位置:×</div>
 
-                <div class="config_msg_subject">ログインの仕方</div>
-                <div class="config_msg">好きな「ユーザー名」と「4桁の部屋コード」を入力</div>
-                <div class="config_msg">ログイン後、「Twitter」または「LINE」で知り合いに部屋コードを共有</div>
-
-                <div class="config_msg_subject">ポケモンを決める</div>
-                <div class="config_msg">まずは相手に当てさせる5文字のポケモンを決めよう</div>
-                <div class="config_msg">第8世代(剣盾)のポケモンまで対応</div>
-                <div class="config_msg">2人がポケモンを決めたら対戦開始！</div>
-
-                <div class="config_msg_subject">勝敗の決め方</div>
-                <div class="config_msg">先に相手のポケモンを当てたほうが勝ち</div>
-                <div class="config_msg">先攻プレイヤーがポケモンを正解しても、同じターンで後攻プレイヤーも正解すれば引き分け</div>
-
-                <div class="config_msg_subject">お問い合わせ</div>
-                <a class="config_msg" href="https://twitter.com/YottyPG" target="_blank" rel="noopener noreferrer">@YottyPG</a>
-                <div class="config_msg">要望やバグ報告などあれば、こちらのTwitterアカウントまでお気軽にご連絡ください。</div>
+                <div class="example_obj">
+                    <div class="tile answer_tile"></div>
+                </div>
+                <div class="example_obj">
+                    <div class="tile answer_tile"></div>
+                </div>
+                <div class="example_obj">
+                    <div class="tile answer_tile"></div>
+                </div>
             </div>
         </div>
     </div>

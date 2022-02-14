@@ -374,8 +374,18 @@ $(document).on('click', '.btn_help', function () {
 });
 
 //×ボタンクリック
-$(document).on('click', '#help_btn_close', function () {
+$(document).on('click', '.window_btn_close', function () {
     $('#help_container').addClass('transparent');
+    $('#settings_container').addClass('transparent');
+});
+
+$(document).on('click', '.toggle', function () {
+    $(".toggle").toggleClass("checked");
+    if (!$('input[name="check"]').prop("checked")) {
+        $(".toggle input").prop("checked", true);
+    } else {
+        $(".toggle input").prop("checked", false);
+    }
 });
 
 async function reset_row() {
