@@ -225,20 +225,19 @@ socket.on('see_answer', function (data) {
 
 //起動時イベント
 $(document).ready(function () {
-    var cookies = document.cookie;
-    var cookiesArray = cookies.split(';');
-
-    for (var c of cookiesArray) {
-        var cArray = c.trim().split('=');
-        if (cArray[0] == 'is_high_contrast') {
-            is_high_contrast = JSON.parse(cArray[1].toLowerCase());
-            $('#chk_high_contrast_mode').prop('checked', is_high_contrast);
-        }
+    var cookie = Cookies.get('is_high_contrast')
+    if (cookie === undefined) {
+        return;
     }
+
+    is_high_contrast = JSON.parse(cookie.toLowerCase());
+    $('#chk_high_contrast_mode').prop('checked', is_high_contrast);
 
     if (is_high_contrast) {
         $('#tgl_high_contrast_mode').toggleClass('checked');
     }
+
+    Cookies.set('is_high_contrast', Cookies.get('is_high_contrast'), { expires: 30 });
 });
 
 //JOINボタンクリック
@@ -453,13 +452,17 @@ $(document).on('click', '.toggle', function (e) {
 
 //ハイコントラストモードクリック
 $(document).on('click', '#tgl_high_contrast_mode', function () {
+    //クッキー保存期間:30日間
+    var date = new Date();
+    date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+
     if ($(this).children('input').prop('checked')) {
         is_high_contrast = true;
-        document.cookie = "is_high_contrast=true";
+        Cookies.set('is_high_contrast', 'true', { expires: 30 });
     }
     else {
         is_high_contrast = false;
-        document.cookie = "is_high_contrast=false";
+        Cookies.set('is_high_contrast', 'false', { expires: 30 });
     }
 
     update_row_by_judge(get_3poke_name(), $('#example_row'), [1, 2, 0]);
