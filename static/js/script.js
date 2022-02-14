@@ -463,6 +463,28 @@ $(document).on('click', '#tgl_high_contrast_mode', function () {
     }
 
     update_row_by_judge(get_3poke_name(), $('#example_row'), [1, 2, 0]);
+
+    //すでに表示されているタイルの色を更新
+    $('.predict').children().each(function (index, row) {
+        $(row).children().each(function (index, tile) {
+            if ($(tile).hasClass('judge1')) {
+                $(tile).removeClass('judge1');
+                $(tile).addClass('judge1_hc');
+            }
+            else if ($(tile).hasClass('judge1_hc')) {
+                $(tile).removeClass('judge1_hc');
+                $(tile).addClass('judge1');
+            }
+            else if ($(tile).hasClass('judge2')) {
+                $(tile).removeClass('judge2');
+                $(tile).addClass('judge2_hc');
+            }
+            else if ($(tile).hasClass('judge2_hc')) {
+                $(tile).removeClass('judge2_hc');
+                $(tile).addClass('judge2');
+            }
+        })
+    })
 });
 
 async function reset_row() {
