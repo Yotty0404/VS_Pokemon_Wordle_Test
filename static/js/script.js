@@ -519,3 +519,72 @@ async function show_message(msg) {
     $('#msg_container').addClass('collapse');
     $('#msg').addClass('transparent');
 }
+
+
+/*フリック用キーボード*/
+var direction = '';
+var position = '';
+var isDrawing = false;
+
+//スワイプ開始時の横方向の座標を格納
+function onTouchStart(event) {
+    position = getPosition(event);
+    direction = ''; //一度リセットする
+    isDrawing = true;
+}
+
+//スワイプの方向（left／right）を取得
+function onTouchMove(event) {
+    direction = '';
+    $('.kb_key_u').addClass('transparent');
+    $('.kb_key_d').addClass('transparent');
+    $('.kb_key_l').addClass('transparent');
+    $('.kb_key_r').addClass('transparent');
+    $('.kb_key').removeClass('gray');
+
+    if (isDrawing == false) {
+        return;
+    }
+
+    var new_position = getPosition(event);
+    var u = position[1] - new_position[1];
+    var d = new_position[1] - position[1];
+    var l = position[0] - new_position[0];
+    var r = new_position[0] - position[0];
+    var max = Math.max(u, d, r, l);
+
+    if (max < 20) {
+        return;
+    }
+
+    $('.kb_key').addClass('gray');
+
+    if (max == u) {
+
+    }
+    else if (max == d) {
+        direction = 'd';
+        $('.kb_key_d').removeClass('transparent');
+    }
+    else if (max == r) {
+        direction = 'r';
+        $('.kb_key_r').removeClass('transparent');
+    }
+}
+
+function onTouchEnd(event) {
+    isDrawing = false;
+    if (direction == 'r') {
+        console.log('右だよ');
+    }
+}
+
+//横方向の座標を取得
+function getPosition(event) {
+    return [event.pageX, event.pageY];
+    // return event.originalEvent.touches[0].pageX;
+}
+
+$(document).on('touchstart mousedown', '.kb_key', onTouchStart);
+$(document).on('touchmove mousemove', '.kb_key', onTouchMove);
+$(document).on('touchend mouseup', '.kb_key', onTouchEnd);

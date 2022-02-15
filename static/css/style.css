@@ -1,5 +1,11 @@
 ﻿body {
     font-family: 'メイリオ', 'Meiryo', sans-serif;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
 }
 
 input, button, select, textarea {
@@ -65,7 +71,7 @@ input, button, select, textarea {
     width: 90vw;
     max-width: 500px;
     margin: 0 auto;
-    height: calc(100vh - 243px);
+    height: calc(100vh - 307px);
 }
 
 .board {
@@ -142,7 +148,7 @@ input, button, select, textarea {
     align-items: center;
     margin: 0 auto;
     position: fixed;
-    bottom: 20px;
+    bottom: 240px;
     width: 100%;
 }
 
@@ -585,7 +591,7 @@ input[type="number"]::-webkit-inner-spin-button {
     justify-content: space-around;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
     #header {
         font-size: 18px;
         height: 26px;
@@ -666,4 +672,110 @@ input[type="number"]::-webkit-inner-spin-button {
     .predict {
         height: calc(100vh - 280px);
     }
+}
+
+
+
+
+/*フリック用キーボード*/
+#kb_container1 {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: #BDBDBD;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    height: 40%;
+    min-height: 220px;
+}
+
+#kb_container2 {
+    display: flex;
+    flex-wrap: wrap;
+    width: 350px;
+}
+
+.kb_row {
+    width: 20%;
+    margin-top: 3px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.kb_key {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    height: 65px;
+    width: 65px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+.kb_key_item {
+    margin: 0;
+    width: 23%;
+    height: 23%;
+    text-align: center;
+    border: 1px solid black;
+    line-height: 19px;
+}
+
+.kb_key_r {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    height: 65px;
+    width: 65px;
+    background-color: white;
+    border-radius: 2px;
+    clip-path: polygon(25% 0, 100% 0, 100% 100%, 25% 100%, 0 50%);
+    letter-spacing: -10px;
+}
+
+.kb_key_d {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    height: 65px;
+    width: 65px;
+    background-color: white;
+    border-radius: 2px;
+    clip-path: polygon(50% 1%, 100% 38%, 100% 100%, 0 100%, 0% 38%);
+    line-height: 80px;
+}
+
+.kb_key_shadow_d {
+    font-size: 24px;
+    font-weight: 700;
+    position: absolute;
+    margin-top: -15px;
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
+}
+
+.kb_key_shadow_r {
+    font-size: 24px;
+    font-weight: 700;
+    position: absolute;
+    margin-left: 100px;
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
+}
+
+.transparent {
+    opacity: 0;
+    display: none;
+}
+
+.gray {
+    background-color: #BDBDBD;
 }
