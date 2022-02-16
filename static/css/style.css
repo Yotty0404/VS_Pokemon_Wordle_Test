@@ -592,6 +592,22 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 @media (max-width: 600px) {
+    #header_container {
+        height: 28px;
+    }
+
+    #header_container2 {
+        height: 40px;
+    }
+
+    #board_container {
+        height: calc(100% - 288px);
+    }
+
+    #kb_container1 {
+        height: 220px;
+    }
+
     #header {
         font-size: 18px;
         height: 26px;
