@@ -76,6 +76,7 @@ input, button, select, textarea {
 
 .board {
     width: 50%;
+    height: 80%;
 }
 
 .player_name_contanier {
@@ -132,7 +133,7 @@ input, button, select, textarea {
 }
 
 .predict {
-    height: calc(100vh - 260px);
+    height: 80%;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
@@ -686,7 +687,7 @@ input[type="number"]::-webkit-inner-spin-button {
     }
 
     .predict {
-        height: calc(100vh - 280px);
+/*        height: calc(100vh - 280px);*/
     }
 }
 
