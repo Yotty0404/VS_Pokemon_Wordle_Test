@@ -229,7 +229,8 @@ input:focus::placeholder {
 
 .transparent {
     opacity: 0;
-    visibility: collapse;
+    display: none;
+    visibility:collapse;
 }
 
 .collapse {
@@ -712,6 +713,7 @@ input[type="number"]::-webkit-inner-spin-button {
     -webkit-user-drag: none;
     -khtml-user-drag: none;
     height: 280px;
+    touch-action: none;
 }
 
 #kb_container2 {
@@ -787,11 +789,6 @@ input[type="number"]::-webkit-inner-spin-button {
     position: absolute;
     filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
     margin: -64px 0px 0px 46px;
-}
-
-.transparent {
-    opacity: 0;
-    display: none;
 }
 
 .gray {
