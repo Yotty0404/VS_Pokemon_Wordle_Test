@@ -589,6 +589,11 @@ function onTouchMove(event) {
 }
 
 function onTouchEnd(event) {
+    $('.kb_key_u').addClass('transparent');
+    $('.kb_key_d').addClass('transparent');
+    $('.kb_key_l').addClass('transparent');
+    $('.kb_key_r').addClass('transparent');
+    $('.kb_key').removeClass('gray');
     isDrawing = false;
     if (direction == 'r') {
         console.log('右だよ');
