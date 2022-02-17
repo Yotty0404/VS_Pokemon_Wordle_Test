@@ -1,4 +1,15 @@
-﻿var poke_data = [];
+﻿function setHeight() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+setHeight();
+
+window.addEventListener('resize', setHeight);
+
+
+
+var poke_data = [];
 
 //json取得
 $.getJSON('./static/json/poke.json', function (data) {
