@@ -72,7 +72,7 @@ input, button, select, textarea {
     width: 90vw;
     max-width: 500px;
     margin: 0 auto;
-    height: calc(100vh - 307px);
+    height: calc(var(--vh, 1vh) * 100 - 367px);
 }
 
 .board {
@@ -150,7 +150,7 @@ input, button, select, textarea {
     align-items: center;
     margin: 0 auto;
     position: fixed;
-    bottom: 240px;
+    bottom: 283px;
     width: 100%;
 }
 
@@ -603,11 +603,12 @@ input[type="number"]::-webkit-inner-spin-button {
     }
 
     #board_container {
-        height: calc(100% - 288px);
+        /*        height: calc(100% - 288px);*/
+        height: calc(var(--vh, 1vh) * 100 - 348px);
     }
 
     #kb_container1 {
-        height: 220px;
+        /*        height: 220px;*/
     }
 
     #header {
@@ -688,7 +689,7 @@ input[type="number"]::-webkit-inner-spin-button {
     }
 
     .predict {
-/*        height: calc(100vh - 280px);*/
+        /*        height: calc(100vh - 280px);*/
     }
 }
 
@@ -710,8 +711,7 @@ input[type="number"]::-webkit-inner-spin-button {
     -khtml-user-select: none;
     -webkit-user-drag: none;
     -khtml-user-drag: none;
-    height: 40%;
-    min-height: 220px;
+    height: 280px;
 }
 
 #kb_container2 {
@@ -777,7 +777,7 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: 24px;
     font-weight: 700;
     position: absolute;
-    margin-top: -15px;
+    margin-top: -19px;
     filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
 }
 
@@ -785,8 +785,8 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: 24px;
     font-weight: 700;
     position: absolute;
-    margin-left: 100px;
     filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
+    margin: -64px 0px 0px 46px;
 }
 
 .transparent {
