@@ -571,11 +571,16 @@ function onTouchMove(event) {
     $('.kb_key').addClass('gray');
 
     if (max == u) {
-
+        direction = 'u';
+        $('.kb_key_u').removeClass('transparent');
     }
     else if (max == d) {
         direction = 'd';
         $('.kb_key_d').removeClass('transparent');
+    }
+    else if (max == l) {
+        direction = 'l';
+        $('.kb_key_l').removeClass('transparent');
     }
     else if (max == r) {
         direction = 'r';
@@ -596,6 +601,6 @@ function getPosition(event) {
     // return event.originalEvent.touches[0].pageX;
 }
 
-$(document).on('touchstart mousedown', '.kb_key', onTouchStart);
-$(document).on('touchmove mousemove', '.kb_key', onTouchMove);
-$(document).on('touchend mouseup', '.kb_key', onTouchEnd);
+$(document).on('touchstart', '.kb_key', onTouchStart);
+$(document).on('touchmove', '.kb_key', onTouchMove);
+$(document).on('touchend', '.kb_key', onTouchEnd);
