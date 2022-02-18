@@ -781,6 +781,7 @@ input[type="number"]::-webkit-inner-spin-button {
     position: absolute;
     margin-top: -19px;
     filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
+    pointer-events: none;
 }
 
 .kb_key_shadow_r {
@@ -789,6 +790,7 @@ input[type="number"]::-webkit-inner-spin-button {
     position: absolute;
     filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
     margin: -64px 0px 0px 46px;
+    pointer-events: none;
 }
 
 .gray {

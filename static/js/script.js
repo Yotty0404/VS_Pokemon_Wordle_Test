@@ -535,15 +535,13 @@ async function show_message(msg) {
 /*フリック用キーボード*/
 var direction = '';
 var position = '';
-var isDrawing = false;
 
-//スワイプ開始時の横方向の座標を格納
+//スワイプ開始時の座標を格納
 function onTouchStart(event) {
     position = getPosition(event);
     direction = ''; //一度リセットする
-    isDrawing = true;
 
-    var c = $(event.currentTarget).find('.kb_key_item')[4];
+/*    var c = $(event.currentTarget).find('.kb_key_item')[4];*/
 /*    alert($(c).text());*/
 }
 
@@ -556,16 +554,12 @@ function onTouchMove(event) {
     $('.kb_key_r').addClass('transparent');
     $('.kb_key').removeClass('gray');
 
-    if (isDrawing == false) {
-        return;
-    }
-
     var new_position = getPosition(event);
     console.log(new_position);
-    var u = position[1] - new_position[1];
-    var d = new_position[1] - position[1];
-    var l = position[0] - new_position[0];
-    var r = new_position[0] - position[0];
+    var u = position.screenY - new_position.screenY;
+    var d = new_position.screenY - position.screenY;
+    var l = position.screenX - new_position.screenX;
+    var r = new_position.screenX - position.screenX;
     var max = Math.max(u, d, r, l);
 
     if (max < 20) {
@@ -599,7 +593,6 @@ function onTouchEnd(event) {
     $('.kb_key_l').addClass('transparent');
     $('.kb_key_r').addClass('transparent');
     $('.kb_key').removeClass('gray');
-    isDrawing = false;
     if (direction == 'r') {
         console.log('右だよ');
     }
@@ -607,8 +600,9 @@ function onTouchEnd(event) {
 
 //横方向の座標を取得
 function getPosition(event) {
-    return [event.pageX, event.pageY];
-    // return event.originalEvent.touches[0].pageX;
+    return event.originalEvent.touches[0];
+/*    return event.originalEvent.touches[0].pageX;*/
+
 }
 
 $(document).on('touchstart', '.kb_key', onTouchStart);
