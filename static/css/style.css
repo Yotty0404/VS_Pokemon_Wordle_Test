@@ -230,7 +230,7 @@ input:focus::placeholder {
 .transparent {
     opacity: 0;
     display: none;
-    visibility:collapse;
+    visibility: collapse;
 }
 
 .collapse {
@@ -720,14 +720,26 @@ input[type="number"]::-webkit-inner-spin-button {
     display: flex;
     flex-wrap: wrap;
     width: 350px;
+    justify-content: center;
+}
+
+.kb_input {
+    width: 58%;
+    margin-top: 3px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    order: 2;
 }
 
 .kb_row {
-    width: 20%;
+    width: 100%;
     margin-top: 3px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
 }
+
 
 .kb_key {
     display: flex;
@@ -749,7 +761,7 @@ input[type="number"]::-webkit-inner-spin-button {
     line-height: 19px;
 }
 
-.kb_key_r {
+.kb_key_flick {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -758,40 +770,63 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 65px;
     background-color: white;
     border-radius: 2px;
-    clip-path: polygon(25% 0, 100% 0, 100% 100%, 25% 100%, 0 50%);
-    letter-spacing: -10px;
+}
+
+.kb_key_u {
+    clip-path: polygon(0 0, 100% 0, 100% 62%, 50% 100%, 0 62%);
+    line-height: 56px;
+    display: table-cell;
+    text-align: center;
 }
 
 .kb_key_d {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    height: 65px;
-    width: 65px;
-    background-color: white;
-    border-radius: 2px;
     clip-path: polygon(50% 1%, 100% 38%, 100% 100%, 0 100%, 0% 38%);
     line-height: 80px;
 }
 
-.kb_key_shadow_d {
+.kb_key_l {
+    clip-path: polygon(0 0, 75% 0, 100% 50%, 75% 100%, 0 100%);
+    letter-spacing: 4px;
+}
+
+.kb_key_r {
+    clip-path: polygon(25% 0, 100% 0, 100% 100%, 25% 100%, 0 50%);
+    letter-spacing: -10px;
+}
+
+
+.kb_key_shadow {
     font-size: 24px;
     font-weight: 700;
     position: absolute;
-    margin-top: -19px;
     filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
     pointer-events: none;
 }
 
-.kb_key_shadow_r {
-    font-size: 24px;
-    font-weight: 700;
-    position: absolute;
-    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
-    margin: -64px 0px 0px 46px;
-    pointer-events: none;
+.kb_key_shadow_d {
+    /*    margin-top: -19px;*/
 }
+
+.kb_key_shadow_r {
+    /*    margin: -64px 0px 0px 46px;*/
+}
+
+.kb_sub {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 5px 2px 0px 2px;
+}
+
+.kb_sub1 {
+    order: 1;
+}
+
+.kb_sub2 {
+    order: 3;
+}
+
+
 
 .gray {
     background-color: #BDBDBD;

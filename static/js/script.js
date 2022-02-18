@@ -2,11 +2,8 @@
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
-
 setHeight();
-
 window.addEventListener('resize', setHeight);
-
 
 
 var poke_data = [];
@@ -454,7 +451,7 @@ $(document).on('click', '.window_btn_close', function () {
 });
 
 //スイッチクリック
-$(document).on('click', '.toggle', function (e) {
+$(document).on('click', '.toggle', function () {
     $(this).toggleClass('checked');
     if (!$(this).children('input').prop('checked')) {
         $(this).children('input').prop('checked', true);
@@ -536,16 +533,29 @@ async function show_message(msg) {
 var direction = '';
 var position = '';
 
-//スワイプ開始時の座標を格納
 function onTouchStart(event) {
     position = getPosition(event);
-    direction = ''; //一度リセットする
+    direction = 'c';
 
-/*    var c = $(event.currentTarget).find('.kb_key_item')[4];*/
-/*    alert($(c).text());*/
+    //フリックのオブジェクトの位置を移動させておく
+    offset = $(event.currentTarget).offset();
+    $('.kb_key_u').offset({ top: offset.top - 48, left: offset.left });
+    $('.kb_key_d').offset({ top: offset.top + 48, left: offset.left });
+    $('.kb_key_l').offset({ top: offset.top, left: offset.left - 48 });
+    $('.kb_key_r').offset({ top: offset.top, left: offset.left + 48 });
+
+
+    //テキストセット
+    $('.kb_key_u').text($($(event.currentTarget).find('.kb_key_item')[1]).text());
+    $('.kb_key_d').text($($(event.currentTarget).find('.kb_key_item')[7]).text());
+    $('.kb_key_l').text($($(event.currentTarget).find('.kb_key_item')[3]).text());
+    $('.kb_key_r').text($($(event.currentTarget).find('.kb_key_item')[5]).text());
+
+
+    /*    var c = $(event.currentTarget).find('.kb_key_item')[4];*/
+    /*    alert($(c).text());*/
 }
 
-//スワイプの方向（left／right）を取得
 function onTouchMove(event) {
     direction = '';
     $('.kb_key_u').addClass('transparent');
@@ -555,7 +565,6 @@ function onTouchMove(event) {
     $('.kb_key').removeClass('gray');
 
     var new_position = getPosition(event);
-    console.log(new_position);
     var u = position.screenY - new_position.screenY;
     var d = new_position.screenY - position.screenY;
     var l = position.screenX - new_position.screenX;
@@ -583,7 +592,6 @@ function onTouchMove(event) {
     else if (max == r) {
         direction = 'r';
         $('.kb_key_r').removeClass('transparent');
-        console.log('right');
     }
 }
 
@@ -593,18 +601,35 @@ function onTouchEnd(event) {
     $('.kb_key_l').addClass('transparent');
     $('.kb_key_r').addClass('transparent');
     $('.kb_key').removeClass('gray');
-    if (direction == 'r') {
-        console.log('右だよ');
+
+    var input_key = '';
+    var key = $(event.currentTarget).find('.kb_key_item');
+
+    if (direction == 'c') {
+        input_key = $(key[4]).text();
     }
+    else if (direction == 'u') {
+        input_key = $(key[1]).text();
+    }
+    else if (direction == 'd') {
+        input_key = $(key[7]).text();
+    }
+    else if (direction == 'l') {
+        input_key = $(key[3]).text();
+    }
+    else if (direction == 'r') {
+        input_key = $(key[5]).text();
+    }
+
+    temp_poke_name = $('#txt_poke_name').val();
+    $('#txt_poke_name').val(temp_poke_name + input_key);
 }
 
-//横方向の座標を取得
+//座標を取得
 function getPosition(event) {
     return event.originalEvent.touches[0];
-/*    return event.originalEvent.touches[0].pageX;*/
-
 }
 
-$(document).on('touchstart', '.kb_key', onTouchStart);
-$(document).on('touchmove', '.kb_key', onTouchMove);
-$(document).on('touchend', '.kb_key', onTouchEnd);
+$(document).on('touchstart', '.kb_input .kb_key', onTouchStart);
+$(document).on('touchmove', '.kb_input .kb_key', onTouchMove);
+$(document).on('touchend', '.kb_input .kb_key', onTouchEnd);
