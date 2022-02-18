@@ -721,6 +721,7 @@ input[type="number"]::-webkit-inner-spin-button {
     flex-wrap: wrap;
     width: 350px;
     justify-content: center;
+    margin-top: -6px;
 }
 
 .kb_input {
@@ -815,7 +816,7 @@ input[type="number"]::-webkit-inner-spin-button {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    margin: 5px 2px 0px 2px;
+    margin: 3px 2px 0px 2px;
 }
 
 .kb_sub1 {
