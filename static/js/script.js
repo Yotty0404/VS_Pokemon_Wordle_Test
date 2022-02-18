@@ -140,42 +140,38 @@ socket.on('judge', function (data) {
 
         $('#img_yajirushi').removeClass('turn180');
     }
-
-    //入力履歴更新
-    if ((data.is_p1 && p1_id == socket.id) || (!data.is_p1 && p2_id == socket.id)) {
-        update_input_word(data.poke_name, data.judges);
-    }
 });
 
-async function update_input_word(poke_name, judges) {
+//入力履歴を更新
+socket.on('update_input_word', async function (data) {
     if (is_end) {
         return;
     }
 
     await sleep(2000);
-    for (var i = 0; i < poke_name.length; ++i) {
-        var word = $(".kb_key_item:contains(" + poke_name.charAt(i) + ")");
+    for (var i = 0; i < data.poke_name.length; ++i) {
+        var word = $(".kb_key_item:contains(" + data.poke_name.charAt(i) + ")");
         var hasJudge1 = word.hasClass('judge1');
         var hasJudge2 = word.hasClass('judge2');
-        if (judges[i] == '1') {
+        if (data.judges[i] == '1') {
             word.removeClass('judge0');
             word.removeClass('judge2');
             word.addClass('judge1');
             continue;
         }
 
-        if (judges[i] == '2' && !hasJudge1) {
+        if (data.judges[i] == '2' && !hasJudge1) {
             word.removeClass('judge0');
             word.addClass('judge2');
             continue;
         }
 
-        if (judges[i] == '0' && !hasJudge1 && !hasJudge2) {
+        if (data.judges[i] == '0' && !hasJudge1 && !hasJudge2) {
             word.addClass('judge0');
             continue;
         }
     }
-}
+});
 
 //勝敗表示
 socket.on('end', async function (data) {
@@ -232,7 +228,7 @@ socket.on('end', async function (data) {
 });
 
 //リセット処理
-socket.on('reset', async function (data) {
+socket.on('reset', function (data) {
     reset_row();
     $('#predict_l_container').empty();
     $('#predict_r_container').empty();
@@ -242,11 +238,10 @@ socket.on('reset', async function (data) {
     $('#upper_answer_l').addClass('transparent');
     $('#upper_answer_r').addClass('transparent');
 
-
     $(".kb_key_item").each(function () {
         $(this).removeClass('judge0');
         $(this).removeClass('judge1');
-        $(this).removeClass('judge2k');
+        $(this).removeClass('judge2');
     });
 
     is_end = false;
