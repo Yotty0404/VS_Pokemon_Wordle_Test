@@ -542,6 +542,9 @@ function onTouchStart(event) {
     position = getPosition(event);
     direction = ''; //一度リセットする
     isDrawing = true;
+
+    var c = $(event.currentTarget).find('.kb_key_item')[4];
+/*    alert($(c).text());*/
 }
 
 //スワイプの方向（left／right）を取得
@@ -558,6 +561,7 @@ function onTouchMove(event) {
     }
 
     var new_position = getPosition(event);
+    console.log(new_position);
     var u = position[1] - new_position[1];
     var d = new_position[1] - position[1];
     var l = position[0] - new_position[0];
@@ -585,6 +589,7 @@ function onTouchMove(event) {
     else if (max == r) {
         direction = 'r';
         $('.kb_key_r').removeClass('transparent');
+        console.log('right');
     }
 }
 
