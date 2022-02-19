@@ -663,7 +663,6 @@ $(document).on('click', '#tgl_flick', function () {
         $('#input_container2').addClass('display_none');
         $('#input_container_flick').removeClass('display_none');
 
-
         if ($('#txt_poke_name').is(':disabled')) {
             return;
         }
@@ -717,7 +716,7 @@ var direction = '';
 var position = '';
 
 function onTouchStart(event) {
-    if ($('#txt_poke_name').is(':disabled')) {
+    if ($('#txt_poke_name').is(':disabled') || !is_flick) {
         return;
     }
     $(event.currentTarget).addClass('gray_for_touch');
@@ -741,7 +740,7 @@ function onTouchStart(event) {
 }
 
 function onTouchMove(event) {
-    if ($('#txt_poke_name').is(':disabled')) {
+    if ($('#txt_poke_name').is(':disabled') || !is_flick) {
         return;
     }
 
@@ -785,7 +784,7 @@ function onTouchMove(event) {
 }
 
 async function onTouchEnd(event) {
-    if ($('#txt_poke_name').is(':disabled')) {
+    if ($('#txt_poke_name').is(':disabled') || !is_flick) {
         return;
     }
 
@@ -913,6 +912,7 @@ const l_word_handakuten = [
     , ['ホ', 'ボ', 'ポ']
 ]
 
+
 function get_judge_class(judge_no) {
     var class_name = `judge${judge_no}`;
 
@@ -924,10 +924,8 @@ function get_judge_class(judge_no) {
 }
 
 
-
-
 function onTouchStart_switch(event) {
-    if ($('#txt_poke_name').is(':disabled')) {
+    if ($('#txt_poke_name').is(':disabled') || !is_flick) {
         return;
     }
     $(event.currentTarget).addClass('gray_for_touch');
@@ -949,7 +947,7 @@ function onTouchStart_switch(event) {
 }
 
 function onTouchMove_switch(event) {
-    if ($('#txt_poke_name').is(':disabled')) {
+    if ($('#txt_poke_name').is(':disabled') || !is_flick) {
         return;
     }
 
@@ -981,7 +979,7 @@ function onTouchMove_switch(event) {
 }
 
 async function onTouchEnd_switch(event) {
-    if ($('#txt_poke_name').is(':disabled')) {
+    if ($('#txt_poke_name').is(':disabled') || !is_flick) {
         return;
     }
 
