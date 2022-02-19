@@ -286,36 +286,6 @@ input:focus::placeholder {
     border-radius: 8px;
 }
 
-.judge0 {
-    background-color: rgb(141, 141, 141);
-    color: white;
-}
-
-.judge1 {
-    background-color: rgb(73, 185, 77);
-    color: white;
-}
-
-.judge2 {
-    background-color: rgb(211, 198, 79);
-    color: white;
-}
-
-.judge0_hc {
-    background-color: rgb(141, 141, 141);
-    color: white;
-}
-
-.judge1_hc {
-    background-color: rgb(245,121,58);
-    color: white;
-}
-
-.judge2_hc {
-    background-color: rgb(133,192,249);
-    color: white;
-}
-
 .win {
     text-shadow: 3px 3px 0 #EC654A !important;
 }
@@ -722,7 +692,7 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 100%;
     justify-content: center;
     align-items: center;
-    background-color: #999999;
+    background-color: #707070;
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -767,18 +737,21 @@ input[type="number"]::-webkit-inner-spin-button {
     align-items: center;
     height: 65px;
     width: 65px;
-    background-color: white;
+    background-color: rgb(198, 198, 198);
     border-radius: 2px;
+    box-shadow: 0 1px 1px 0 rgb(0 0 0 / 50%);
 }
 
 .kb_key_item {
     margin: 0;
-    width: 25%;
-    height: 25%;
+    width: 30%;
+    height: 30%;
     text-align: center;
-    border: 1px solid black;
-    line-height: 16px;
+    /*    border: 1px solid black;*/
+    background-color: rgb(255, 255, 255);
+    line-height: 18px;
     font-size: 13px;
+    border-radius: 2px;
 }
 
 .kb_key_flick {
@@ -850,6 +823,61 @@ input[type="number"]::-webkit-inner-spin-button {
     margin-left: -3px;
 }
 
+#kb_key_switch {
+    display: flex;
+    flex-direction: column;
+}
+
+#kb_key_switch1 {
+    margin: 8px 0px 0px 7px;
+}
+
+
+#kb_key_switch2 {
+    margin-top: -28px;
+}
+
+.kb_key_no_input .kb_key_item {
+    background-color: rgb(229, 229, 229);
+    color: rgb(130, 130, 130);
+}
+
 .gray {
     background-color: #B6B6B6;
+}
+
+
+
+
+
+
+
+.judge0 {
+    background-color: rgb(141, 141, 141) !important;
+    color: white !important;
+}
+
+.judge1 {
+    background-color: rgb(73, 185, 77) !important;
+    color: white !important;
+}
+
+.judge2 {
+    background-color: rgb(211, 198, 79) !important;
+    color: white !important;
+}
+
+.judge0_hc {
+    background-color: rgb(141, 141, 141) !important;
+    color: white !important;
+}
+
+.judge1_hc {
+    background-color: rgb(245,121,58) !important;
+    color: white !important;
+}
+
+.judge2_hc {
+    background-color: rgb(133,192,249) !important;
+    color: white !important;
 }

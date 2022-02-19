@@ -323,7 +323,9 @@ $(document).on('click', '#btn_join', function () {
 });
 
 //ENTERボタンクリック
-$(document).on('click', '#btn_enter,#kb_key_enter', function () {
+$(document).on('click', '#btn_enter', etner_click);
+$(document).on('touchstart', '#kb_key_enter', etner_click);
+function etner_click() {
     if ($('#btn_enter').is(':disabled')) {
         return;
     }
@@ -363,7 +365,8 @@ $(document).on('click', '#btn_enter,#kb_key_enter', function () {
             }
         }
     });
-});
+}
+
 
 async function check_poke_name(poke_name) {
     var msg = '';
@@ -694,7 +697,66 @@ $(document).on('touchmove', '.kb_input .kb_key', onTouchMove);
 $(document).on('touchend', '.kb_input .kb_key', onTouchEnd);
 
 
-$(document).on('click', '#kb_key_bs', function () {
+$(document).on('touchstart', '#kb_key_bs', function () {
     temp_poke_name = $('#txt_poke_name').val();
     $('#txt_poke_name').val(temp_poke_name.slice(0, -1));
+});
+
+const l_word = [
+    ['ア', 'ァ']
+    , ['イ', 'ィ']
+    , ['ウ', 'ゥ']
+    , ['エ', 'ェ']
+    , ['オ', 'ォ']
+    , ['カ', 'ガ']
+    , ['キ', 'ギ']
+    , ['ク', 'グ']
+    , ['ケ', 'ゲ']
+    , ['コ', 'ゴ']
+    , ['サ', 'ザ']
+    , ['シ', 'ジ']
+    , ['ス', 'ズ']
+    , ['セ', 'ゼ']
+    , ['ソ', 'ゾ']
+    , ['タ', 'ダ']
+    , ['チ', 'ヂ']
+    , ['ツ', 'ッ', 'ヅ']
+    , ['テ', 'デ']
+    , ['ト', 'ド']
+    , ['ハ', 'バ', 'パ']
+    , ['ヒ', 'バ', 'パ']
+    , ['フ', 'バ', 'パ']
+    , ['ハ', 'バ', 'パ']
+    , ['ハ', 'バ', 'パ']
+    , ['ヤ', 'ャ']
+    , ['ユ', 'ュ']
+    , ['ヨ', 'ョ']
+]
+
+$(document).on('touchstart', '#kb_key_switch', function () {
+    if ($('#txt_poke_name').is(':disabled')) {
+        return;
+    }
+
+    temp_poke_name = $('#txt_poke_name').val();
+    targer_word = temp_poke_name.slice(-1);
+
+    var l_switch = l_word.find(x => x.includes(targer_word));
+    if (l_switch === undefined) {
+        return;
+    }
+
+    var index = l_switch.indexOf(targer_word);
+    if (index < 0) {
+        return;
+    }
+    else if (index == l_switch.length - 1) {
+        index = 0;
+    }
+    else {
+        index += 1;
+    }
+
+
+    $('#txt_poke_name').val(temp_poke_name.slice(0, -1) + l_switch[index]);
 });
