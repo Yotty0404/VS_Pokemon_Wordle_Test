@@ -747,11 +747,11 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 30%;
     height: 30%;
     text-align: center;
-    /*    border: 1px solid black;*/
     background-color: rgb(255, 255, 255);
     line-height: 18px;
     font-size: 13px;
     border-radius: 2px;
+    font-weight: 700;
 }
 
 .kb_key_flick {
@@ -845,8 +845,6 @@ input[type="number"]::-webkit-inner-spin-button {
 .gray {
     background-color: #B6B6B6;
 }
-
-
 
 
 
