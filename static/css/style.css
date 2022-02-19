@@ -74,7 +74,7 @@ input, button, select, textarea {
     max-width: 500px;
     margin: 0 auto;
     height: calc(var(--vh, 1vh) * 100 - 407px);
-    z-index: -1;
+    z-index: 1;
 }
 
 .board {
@@ -152,6 +152,7 @@ input, button, select, textarea {
     height: 40px;
     width: 100%;
     background-color: rgb(225, 225, 225);
+    z-index: 5;
 }
 
 #input_container2 {
@@ -718,6 +719,7 @@ input[type="number"]::-webkit-inner-spin-button {
     -khtml-user-drag: none;
     height: 280px;
     touch-action: none;
+    z-index: 5;
 }
 
 #kb_container2 {
