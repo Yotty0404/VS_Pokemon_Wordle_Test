@@ -823,18 +823,27 @@ input[type="number"]::-webkit-inner-spin-button {
     margin-left: -3px;
 }
 
+#kb_btn_enter {
+    font-weight: 700;
+}
+
 #kb_key_switch {
     display: flex;
     flex-direction: column;
+    font-weight: 700;
+    font-size: 20px;
 }
 
 #kb_key_switch1 {
-    margin: 8px 0px 0px 7px;
+    margin: 8px 0px 0px 10px;
+    font-weight: 700;
+    font-size: 20px;
 }
 
 
 #kb_key_switch2 {
     margin-top: -28px;
+    font-size: 16px;
 }
 
 .kb_key_no_input .kb_key_item {
