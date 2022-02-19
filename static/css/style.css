@@ -909,6 +909,9 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 100%;
 }
 
+    #input_tile_row .tile {
+        transition: all 0.1s ease !important;
+    }
 
 .tile_animation {
     animation-name: pop;

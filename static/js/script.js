@@ -182,23 +182,30 @@ socket.on('update_input_word', async function (data) {
     await sleep(2000);
     for (var i = 0; i < data.poke_name.length; ++i) {
         var word = $(".kb_key_item:contains(" + data.poke_name.charAt(i) + ")");
-        var hasJudge1 = word.hasClass('judge1');
-        var hasJudge2 = word.hasClass('judge2');
+        var hasJudge1 = word.hasClass('judge1') || word.hasClass('judge1_hc');
+        var hasJudge2 = word.hasClass('judge2') || word.hasClass('judge2_hc');
+
         if (data.judges[i] == '1') {
             word.removeClass('judge0');
+            word.removeClass('judge0_hc');
             word.removeClass('judge2');
-            word.addClass('judge1');
+            word.removeClass('judge2_hc');
+
+            word.addClass(get_judge_class(1));
             continue;
         }
 
         if (data.judges[i] == '2' && !hasJudge1) {
             word.removeClass('judge0');
-            word.addClass('judge2');
+            word.removeClass('judge0_hc');
+
+            word.addClass(get_judge_class(2));
             continue;
         }
 
         if (data.judges[i] == '0' && !hasJudge1 && !hasJudge2) {
-            word.addClass('judge0');
+
+            word.addClass(get_judge_class(0));
             continue;
         }
     }
@@ -278,6 +285,9 @@ socket.on('reset', function (data) {
         $(this).removeClass('judge0');
         $(this).removeClass('judge1');
         $(this).removeClass('judge2');
+        $(this).removeClass('judge0_hc');
+        $(this).removeClass('judge1_hc');
+        $(this).removeClass('judge2_hc');
     });
 
     is_end = false;
@@ -589,6 +599,26 @@ $(document).on('click', '#tgl_high_contrast_mode', function () {
             }
         })
     })
+
+
+    $('.kb_key_item').each(function (index, kb_key) {
+        if ($(kb_key).hasClass('judge1')) {
+            $(kb_key).removeClass('judge1');
+            $(kb_key).addClass('judge1_hc');
+        }
+        else if ($(kb_key).hasClass('judge1_hc')) {
+            $(kb_key).removeClass('judge1_hc');
+            $(kb_key).addClass('judge1');
+        }
+        else if ($(kb_key).hasClass('judge2')) {
+            $(kb_key).removeClass('judge2');
+            $(kb_key).addClass('judge2_hc');
+        }
+        else if ($(kb_key).hasClass('judge2_hc')) {
+            $(kb_key).removeClass('judge2_hc');
+            $(kb_key).addClass('judge2');
+        }
+    })
 });
 
 async function reset_row() {
@@ -823,3 +853,16 @@ $(document).on('touchstart', '#kb_key_switch', async function () {
     await sleep(100);
     tile.removeClass('tile_animation');
 });
+
+
+
+
+function get_judge_class(judge_no) {
+    var class_name = `judge${judge_no}`;
+
+    if (is_high_contrast) {
+        class_name += '_hc';
+    }
+
+    return class_name;
+}
