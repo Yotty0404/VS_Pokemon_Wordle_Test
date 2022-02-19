@@ -581,7 +581,7 @@ function onTouchStart(event) {
     if ($('#txt_poke_name').is(':disabled')) {
         return;
     }
-    $(event.currentTarget).addClass('gray');
+    $(event.currentTarget).addClass('gray_for_touch');
 
     position = getPosition(event);
     direction = 'c';
@@ -615,7 +615,7 @@ function onTouchMove(event) {
     $('.kb_key_d').addClass('transparent');
     $('.kb_key_l').addClass('transparent');
     $('.kb_key_r').addClass('transparent');
-    $(event.currentTarget).removeClass('gray');
+    $(event.currentTarget).removeClass('gray_for_touch');
     $(event.currentTarget).removeClass('transparent');
 
     var new_position = getPosition(event);
@@ -658,7 +658,7 @@ function onTouchEnd(event) {
     $('.kb_key_d').addClass('transparent');
     $('.kb_key_l').addClass('transparent');
     $('.kb_key_r').addClass('transparent');
-    $(event.currentTarget).removeClass('gray');
+    $(event.currentTarget).removeClass('gray_for_touch');
     $(event.currentTarget).removeClass('transparent');
 
     var input_key = '';

@@ -846,6 +846,10 @@ input[type="number"]::-webkit-inner-spin-button {
     background-color: #B6B6B6;
 }
 
+.gray_for_touch {
+    background-color: #8E8E8E;
+}
+
 
 
 
