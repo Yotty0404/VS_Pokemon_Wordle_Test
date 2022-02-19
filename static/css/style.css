@@ -240,6 +240,7 @@ input:focus::placeholder {
     width: 100%;
     top: 0;
     left: 0;
+    z-index: 10;
 }
 
 #battle_start {
