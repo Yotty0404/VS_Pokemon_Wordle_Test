@@ -55,7 +55,7 @@ socket.on('update_info_join', function (data) {
 
     if (p1_id != '' && p2_id != '') {
         $('#txt_poke_name').prop('disabled', false);
-        $('#btn').prop('disabled', false);
+        $('#btn_enter,#kb_key_enter').prop('disabled', false);
         show_message('自分のポケモンを入力してください');
     }
 });
@@ -68,7 +68,7 @@ socket.on('opponent_exit', function (data) {
 //正解を更新
 socket.on('update_answer', function (data) {
     $('#txt_poke_name').prop('disabled', false);
-    $('#btn').prop('disabled', false);
+    $('#btn_enter,#kb_key_enter').prop('disabled', false);
 
     if (data.is_p1) {
         update_row('?????', $('#answer_l'));
@@ -87,11 +87,11 @@ socket.on('battle_start', async function () {
     //プレイヤー判断
     if (p1_id == socket.id) {
         $('#txt_poke_name').prop('disabled', false);
-        $('#btn').prop('disabled', false);
+        $('#btn_enter,#kb_key_enter').prop('disabled', false);
     }
     else if (p2_id == socket.id) {
         $('#txt_poke_name').prop('disabled', true);
-        $('#btn').prop('disabled', true);
+        $('#btn_enter,#kb_key_enter').prop('disabled', true);
     }
 
     $('#battle_start').text('BATTLE START');
@@ -117,7 +117,7 @@ socket.on('judge', function (data) {
         //プレイヤー判断
         if (p2_id == socket.id) {
             $('#txt_poke_name').prop('disabled', false);
-            $('#btn').prop('disabled', false);
+            $('#btn_enter,#kb_key_enter').prop('disabled', false);
         }
 
         $('#img_yajirushi').addClass('turn180');
@@ -135,7 +135,7 @@ socket.on('judge', function (data) {
         //プレイヤー判断
         if (p1_id == socket.id) {
             $('#txt_poke_name').prop('disabled', false);
-            $('#btn').prop('disabled', false);
+            $('#btn_enter,#kb_key_enter').prop('disabled', false);
         }
 
         $('#img_yajirushi').removeClass('turn180');
@@ -212,7 +212,7 @@ socket.on('end', async function (data) {
     }
 
     $('#txt_poke_name').prop('disabled', false);
-    $('#btn').prop('disabled', false);
+    $('#btn_enter,#kb_key_enter').prop('disabled', false);
 
     $('#battle_start').text(msg);
     $('#battle_start_container').removeClass('collapse');
@@ -323,7 +323,11 @@ $(document).on('click', '#btn_join', function () {
 });
 
 //ENTERボタンクリック
-$(document).on('click', '#btn', function () {
+$(document).on('click', '#btn_enter,#kb_key_enter', function () {
+    if ($('#btn_enter').is(':disabled')) {
+        return;
+    }
+
     var poke_name = $('#txt_poke_name').val();
 
     check_poke_name(poke_name).then(result => {
@@ -333,7 +337,7 @@ $(document).on('click', '#btn', function () {
 
         if (!is_end) {
             $('#txt_poke_name').prop('disabled', true);
-            $('#btn').prop('disabled', true);
+            $('#btn_enter,#kb_key_enter').prop('disabled', true);
         }
 
         $('#txt_poke_name').val('');
@@ -387,7 +391,7 @@ async function check_poke_name(poke_name) {
 //テキストボックスでEnterキー押下時、ボタンクリックを発火
 $(document).on('keydown', '#txt_poke_name', function (event) {
     if (event.key === 'Enter') {
-        $('#btn').click();
+        $('#btn_enter').click();
     }
 });
 
@@ -571,6 +575,11 @@ var direction = '';
 var position = '';
 
 function onTouchStart(event) {
+    if ($('#txt_poke_name').is(':disabled')) {
+        return;
+    }
+    $(event.currentTarget).addClass('gray');
+
     position = getPosition(event);
     direction = 'c';
 
@@ -594,12 +603,17 @@ function onTouchStart(event) {
 }
 
 function onTouchMove(event) {
+    if ($('#txt_poke_name').is(':disabled')) {
+        return;
+    }
+
     direction = '';
     $('.kb_key_u').addClass('transparent');
     $('.kb_key_d').addClass('transparent');
     $('.kb_key_l').addClass('transparent');
     $('.kb_key_r').addClass('transparent');
-    $('.kb_key').removeClass('gray');
+    $(event.currentTarget).removeClass('gray');
+    $(event.currentTarget).removeClass('transparent');
 
     var new_position = getPosition(event);
     var u = position.screenY - new_position.screenY;
@@ -612,7 +626,7 @@ function onTouchMove(event) {
         return;
     }
 
-    $('.kb_key').addClass('gray');
+    $(event.currentTarget).addClass('transparent');
 
     if (max == u) {
         direction = 'u';
@@ -633,11 +647,16 @@ function onTouchMove(event) {
 }
 
 function onTouchEnd(event) {
+    if ($('#txt_poke_name').is(':disabled')) {
+        return;
+    }
+
     $('.kb_key_u').addClass('transparent');
     $('.kb_key_d').addClass('transparent');
     $('.kb_key_l').addClass('transparent');
     $('.kb_key_r').addClass('transparent');
-    $('.kb_key').removeClass('gray');
+    $(event.currentTarget).removeClass('gray');
+    $(event.currentTarget).removeClass('transparent');
 
     var input_key = '';
     var key = $(event.currentTarget).find('.kb_key_item');
@@ -659,6 +678,9 @@ function onTouchEnd(event) {
     }
 
     temp_poke_name = $('#txt_poke_name').val();
+    if (temp_poke_name.length >= 5) {
+        return;
+    }
     $('#txt_poke_name').val(temp_poke_name + input_key);
 }
 
@@ -670,3 +692,9 @@ function getPosition(event) {
 $(document).on('touchstart', '.kb_input .kb_key', onTouchStart);
 $(document).on('touchmove', '.kb_input .kb_key', onTouchMove);
 $(document).on('touchend', '.kb_input .kb_key', onTouchEnd);
+
+
+$(document).on('click', '#kb_key_bs', function () {
+    temp_poke_name = $('#txt_poke_name').val();
+    $('#txt_poke_name').val(temp_poke_name.slice(0, -1));
+});

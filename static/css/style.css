@@ -7,6 +7,7 @@
     width: 100vw;
     min-height: 100vh;
     min-height: calc(var(--vh, 1vh) * 100);
+    overflow: hidden;
 }
 
 input, button, select, textarea {
@@ -72,7 +73,7 @@ input, button, select, textarea {
     width: 90vw;
     max-width: 500px;
     margin: 0 auto;
-    height: calc(var(--vh, 1vh) * 100 - 367px);
+    height: calc(var(--vh, 1vh) * 100 - 399px);
 }
 
 .board {
@@ -147,11 +148,35 @@ input, button, select, textarea {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    align-items: center;
-    margin: 0 auto;
-    position: fixed;
-    bottom: 283px;
+    height: 32px;
     width: 100%;
+}
+
+#input_container2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 330px;
+}
+
+#btn_confirm {
+    height: 28px;
+    width: 40px;
+}
+
+
+#btn_enter {
+    height: 28px;
+    width: 55px;
+    font-size: 14px;
+}
+
+#txt_poke_name {
+    height: 18px;
+    width: 150px;
+    font-size: 19px;
+    margin-top: -5px;
 }
 
 .textbox {
@@ -247,6 +272,7 @@ input:focus::placeholder {
     top: 0;
     left: 0;
     z-index: 1000;
+    pointer-events: none;
 }
 
 #msg {
@@ -605,7 +631,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
     #board_container {
         /*        height: calc(100% - 288px);*/
-        height: calc(var(--vh, 1vh) * 100 - 348px);
+        height: calc(var(--vh, 1vh) * 100 - 380px);
     }
 
     #kb_container1 {
@@ -629,7 +655,7 @@ input[type="number"]::-webkit-inner-spin-button {
         font-size: 24px !important;
     }
 
-    #btn {
+    #btn_enter {
         font-size: 14px;
         width: 55px;
     }
@@ -680,17 +706,9 @@ input[type="number"]::-webkit-inner-spin-button {
         line-height: 29px;
     }
 
-    #txt_poke_name {
-        width: 250px;
-    }
-
     #help_header_title {
         font-size: 19px;
         height: 26px;
-    }
-
-    .predict {
-        /*        height: calc(100vh - 280px);*/
     }
 }
 
@@ -704,7 +722,7 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 100%;
     justify-content: center;
     align-items: center;
-    background-color: #BDBDBD;
+    background-color: #999999;
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -827,8 +845,10 @@ input[type="number"]::-webkit-inner-spin-button {
     order: 3;
 }
 
-
+#kb_btn_bs {
+    margin-left: -3px;
+}
 
 .gray {
-    background-color: #BDBDBD;
+    background-color: #B6B6B6;
 }

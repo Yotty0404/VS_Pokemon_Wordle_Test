@@ -114,9 +114,10 @@
     </div>
 
     <div id="input_container">
-        <div>
+        <div id="input_container2">
+            <input id="btn_confirm" type="button" value="→" class="btn" disabled>
             <input id="txt_poke_name" class="textbox" type="text" placeholder="ポケモンの名前" maxlength="5" disabled />
-            <input id="btn" type="button" value="ENTER" class="btn" disabled>
+            <input id="btn_enter" type="button" value="ENTER" class="btn" disabled>
         </div>
     </div>
 
@@ -240,13 +241,13 @@
                         <div class="kb_key">
                             <div class="kb_key_item"></div>
                             <div class="kb_key_item">ユ</div>
-                            <div class="kb_key_item"></div>
+                            <div class="kb_key_item">ュ</div>
                             <div class="kb_key_item"></div>
                             <div class="kb_key_item">ヤ</div>
-                            <div class="kb_key_item"></div>
+                            <div class="kb_key_item">ュ</div>
                             <div class="kb_key_item"></div>
                             <div class="kb_key_item">ヨ</div>
-                            <div class="kb_key_item"></div>
+                            <div class="kb_key_item">ョ</div>
                         </div>
                     </div>
                     <div id="kb_key_container">
@@ -373,6 +374,13 @@
             <div class="kb_sub kb_sub2">
                 <div class="kb_row">
                     <div id="kb_key_container">
+                        <div id="kb_key_bs" class="kb_key">
+                            <div id="kb_btn_bs" class="material-icons-outlined kb_btn">backspace</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kb_row">
+                    <div id="kb_key_container">
                         <div class="kb_key">
                             <div class="kb_key_item"></div>
                             <div class="kb_key_item">ブ</div>
@@ -401,31 +409,10 @@
                         </div>
                     </div>
                 </div>
-                <div id="kb_key_container">
-                    <div class="kb_key">
-                        <div class="kb_key_item"></div>
-                        <div class="kb_key_item">ュ</div>
-                        <div class="kb_key_item"></div>
-                        <div class="kb_key_item"></div>
-                        <div class="kb_key_item">ャ</div>
-                        <div class="kb_key_item"></div>
-                        <div class="kb_key_item"></div>
-                        <div class="kb_key_item">ョ</div>
-                        <div class="kb_key_item"></div>
-                    </div>
-                </div>
                 <div class="kb_row">
                     <div id="kb_key_container">
-                        <div class="kb_key">
-                            <div class="kb_key_item"></div>
-                            <div class="kb_key_item"></div>
-                            <div class="kb_key_item"></div>
-                            <div class="kb_key_item"></div>
-                            <div class="kb_key_item"></div>
-                            <div class="kb_key_item"></div>
-                            <div class="kb_key_item"></div>
-                            <div class="kb_key_item"></div>
-                            <div class="kb_key_item"></div>
+                        <div id="kb_key_enter" class="kb_key">
+                            <div id="kb_btn_enter" class="kb_btn">ENTER</div>
                         </div>
                     </div>
                 </div>
