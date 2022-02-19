@@ -35,6 +35,7 @@ var p2_id = '';
 var is_in_game = false;
 var is_end = false;
 var is_high_contrast = false;
+var is_flick = true;
 
 //満室エラー
 socket.on('full_error', function (data) {
@@ -58,9 +59,11 @@ socket.on('update_info_join', function (data) {
         $('#btn_enter,#kb_key_enter').prop('disabled', false);
 
         //フリックを入力可能のスタイルに
-        $('.kb_input').find('.kb_key').each(function () {
-            $(this).removeClass('kb_key_no_input');
-        });
+        if (is_flick) {
+            $('.kb_input').find('.kb_key').each(function () {
+                $(this).removeClass('kb_key_no_input');
+            });
+        }
 
         show_message('自分のポケモンを入力してください');
     }
@@ -77,9 +80,11 @@ socket.on('update_answer', function (data) {
     $('#btn_enter,#kb_key_enter').prop('disabled', false);
 
     //フリックを入力可能のスタイルに
-    $('.kb_input').find('.kb_key').each(function () {
-        $(this).removeClass('kb_key_no_input');
-    });
+    if (is_flick) {
+        $('.kb_input').find('.kb_key').each(function () {
+            $(this).removeClass('kb_key_no_input');
+        });
+    }
 
     if (data.is_p1) {
         update_row('?????', $('#answer_l'));
@@ -101,9 +106,11 @@ socket.on('battle_start', async function () {
         $('#btn_enter,#kb_key_enter').prop('disabled', false);
 
         //フリックを入力可能のスタイルに
-        $('.kb_input').find('.kb_key').each(function () {
-            $(this).removeClass('kb_key_no_input');
-        });
+        if (is_flick) {
+            $('.kb_input').find('.kb_key').each(function () {
+                $(this).removeClass('kb_key_no_input');
+            });
+        }
     }
     else if (p2_id == socket.id) {
         $('#txt_poke_name').prop('disabled', true);
@@ -141,9 +148,11 @@ socket.on('judge', function (data) {
             $('#btn_enter,#kb_key_enter').prop('disabled', false);
 
             //フリックを入力可能のスタイルに
-            $('.kb_input').find('.kb_key').each(function () {
-                $(this).removeClass('kb_key_no_input');
-            });
+            if (is_flick) {
+                $('.kb_input').find('.kb_key').each(function () {
+                    $(this).removeClass('kb_key_no_input');
+                });
+            }
         }
 
         $('#img_yajirushi').addClass('turn180');
@@ -164,9 +173,11 @@ socket.on('judge', function (data) {
             $('#btn_enter,#kb_key_enter').prop('disabled', false);
 
             //フリックを入力可能のスタイルに
-            $('.kb_input').find('.kb_key').each(function () {
-                $(this).removeClass('kb_key_no_input');
-            });
+            if (is_flick) {
+                $('.kb_input').find('.kb_key').each(function () {
+                    $(this).removeClass('kb_key_no_input');
+                });
+            }
         }
 
         $('#img_yajirushi').removeClass('turn180');
@@ -253,9 +264,11 @@ socket.on('end', async function (data) {
     $('#btn_enter,#kb_key_enter').prop('disabled', false);
 
     //フリックを入力可能のスタイルに
-    $('.kb_input').find('.kb_key').each(function () {
-        $(this).removeClass('kb_key_no_input');
-    });
+    if (is_flick) {
+        $('.kb_input').find('.kb_key').each(function () {
+            $(this).removeClass('kb_key_no_input');
+        });
+    }
 
     $('#battle_start').text(msg);
     $('#battle_start_container').removeClass('collapse');
@@ -320,7 +333,7 @@ $(document).ready(function () {
     if (cookie === undefined) {
         //クッキーの初期化
         Cookies.set('is_high_contrast', 'false', { expires: 30 });
-        return;
+        cookie = 'false'
     }
 
     is_high_contrast = JSON.parse(cookie.toLowerCase());
@@ -331,6 +344,30 @@ $(document).ready(function () {
     }
 
     Cookies.set('is_high_contrast', cookie, { expires: 30 });
+
+
+    //フリック入力
+    cookie = Cookies.get('is_flick')
+    if (cookie === undefined) {
+        //クッキーの初期化
+        Cookies.set('is_flick', 'true', { expires: 30 });
+        cookie = 'true';
+    }
+
+    is_flick = JSON.parse(cookie.toLowerCase());
+    $('#chk_flick').prop('checked', is_flick);
+
+    if (is_flick) {
+        $('#tgl_flick').toggleClass('checked');
+        $('#input_container2').addClass('display_none');
+        $('#input_container_flick').removeClass('display_none');
+    }
+    else {
+        $('#input_container2').removeClass('display_none');
+        $('#input_container_flick').addClass('display_none');
+    }
+
+    Cookies.set('is_flick', cookie, { expires: 30 });
 });
 
 //JOINボタンクリック
@@ -563,10 +600,6 @@ $(document).on('click', '.toggle', function () {
 
 //ハイコントラストモードクリック
 $(document).on('click', '#tgl_high_contrast_mode', function () {
-    //クッキー保存期間:30日間
-    var date = new Date();
-    date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
-
     if ($(this).children('input').prop('checked')) {
         is_high_contrast = true;
         Cookies.set('is_high_contrast', 'true', { expires: 30 });
@@ -619,6 +652,35 @@ $(document).on('click', '#tgl_high_contrast_mode', function () {
             $(kb_key).addClass('judge2');
         }
     })
+});
+
+
+//フリック入力クリック
+$(document).on('click', '#tgl_flick', function () {
+    if ($(this).children('input').prop('checked')) {
+        is_flick = true;
+        Cookies.set('is_flick', 'true', { expires: 30 });
+        $('#input_container2').addClass('display_none');
+        $('#input_container_flick').removeClass('display_none');
+
+
+        if ($('#txt_poke_name').is(':disabled')) {
+            return;
+        }
+        $('.kb_input').find('.kb_key').each(function () {
+            $(this).removeClass('kb_key_no_input');
+        });
+    }
+    else {
+        is_flick = false;
+        Cookies.set('is_flick', 'false', { expires: 30 });
+        $('#input_container2').removeClass('display_none');
+        $('#input_container_flick').addClass('display_none');
+
+        $('.kb_input').find('.kb_key').each(function () {
+            $(this).addClass('kb_key_no_input');
+        });
+    }
 });
 
 async function reset_row() {
@@ -820,42 +882,36 @@ const l_word = [
     , ['ヨ', 'ョ']
 ]
 
-$(document).on('touchstart', '#kb_key_switch', async function () {
-    if ($('#txt_poke_name').is(':disabled')) {
-        return;
-    }
+const l_word_dakuten = [
+    ['カ', 'ガ']
+    , ['キ', 'ギ']
+    , ['ク', 'グ']
+    , ['ケ', 'ゲ']
+    , ['コ', 'ゴ']
+    , ['サ', 'ザ']
+    , ['シ', 'ジ']
+    , ['ス', 'ズ']
+    , ['セ', 'ゼ']
+    , ['ソ', 'ゾ']
+    , ['タ', 'ダ']
+    , ['チ', 'ヂ']
+    , ['ツ', 'ヅ', 'ッ']
+    , ['テ', 'デ']
+    , ['ト', 'ド']
+    , ['ハ', 'バ', 'パ']
+    , ['ヒ', 'ビ', 'ピ']
+    , ['フ', 'ブ', 'プ']
+    , ['ヘ', 'ベ', 'ペ']
+    , ['ホ', 'ボ', 'ポ']
+]
 
-    temp_poke_name = $('#txt_poke_name').val();
-    targer_word = temp_poke_name.slice(-1);
-
-    var l_switch = l_word.find(x => x.includes(targer_word));
-    if (l_switch === undefined) {
-        return;
-    }
-
-    var index = l_switch.indexOf(targer_word);
-    if (index < 0) {
-        return;
-    }
-    else if (index == l_switch.length - 1) {
-        index = 0;
-    }
-    else {
-        index += 1;
-    }
-
-    var input_key = l_switch[index];
-    $('#txt_poke_name').val(temp_poke_name.slice(0, -1) + input_key);
-    var word_index = $('#txt_poke_name').val().length - 1;
-    var tile = $($('#input_tile_row').children()[word_index]);
-    tile.text(input_key);
-    tile.addClass('tile_animation');
-    await sleep(100);
-    tile.removeClass('tile_animation');
-});
-
-
-
+const l_word_handakuten = [
+    ['ハ', 'バ', 'パ']
+    , ['ヒ', 'ビ', 'ピ']
+    , ['フ', 'ブ', 'プ']
+    , ['ヘ', 'ベ', 'ペ']
+    , ['ホ', 'ボ', 'ポ']
+]
 
 function get_judge_class(judge_no) {
     var class_name = `judge${judge_no}`;
@@ -866,3 +922,144 @@ function get_judge_class(judge_no) {
 
     return class_name;
 }
+
+
+
+
+function onTouchStart_switch(event) {
+    if ($('#txt_poke_name').is(':disabled')) {
+        return;
+    }
+    $(event.currentTarget).addClass('gray_for_touch');
+
+    position = getPosition(event);
+    direction = 'c';
+
+    //フリックのオブジェクトの位置を移動させておく
+    offset = $(event.currentTarget).offset();
+    $('.kb_key_u').offset({ top: offset.top - 48, left: offset.left });
+    $('.kb_key_d').offset({ top: offset.top + 48, left: offset.left });
+    $('.kb_key_l').offset({ top: offset.top, left: offset.left - 48 });
+    $('.kb_key_r').offset({ top: offset.top, left: offset.left + 48 });
+
+
+    //テキストセット
+    $('.kb_key_l').text('゛');
+    $('.kb_key_r').text('゜');
+}
+
+function onTouchMove_switch(event) {
+    if ($('#txt_poke_name').is(':disabled')) {
+        return;
+    }
+
+    direction = 'c';
+    $('.kb_key_l').addClass('transparent');
+    $('.kb_key_r').addClass('transparent');
+    $(event.currentTarget).removeClass('gray_for_touch');
+    $(event.currentTarget).removeClass('transparent');
+
+    var new_position = getPosition(event);
+    var l = position.screenX - new_position.screenX;
+    var r = new_position.screenX - position.screenX;
+    var max = Math.max(r, l);
+
+    if (max < 20) {
+        return;
+    }
+
+    $(event.currentTarget).addClass('transparent');
+
+    if (max == l) {
+        direction = 'l';
+        $('.kb_key_l').removeClass('transparent');
+    }
+    else if (max == r) {
+        direction = 'r';
+        $('.kb_key_r').removeClass('transparent');
+    }
+}
+
+async function onTouchEnd_switch(event) {
+    if ($('#txt_poke_name').is(':disabled')) {
+        return;
+    }
+
+    $('.kb_key_l').addClass('transparent');
+    $('.kb_key_r').addClass('transparent');
+    $(event.currentTarget).removeClass('gray_for_touch');
+    $(event.currentTarget).removeClass('transparent');
+
+
+    temp_poke_name = $('#txt_poke_name').val();
+    targer_word = temp_poke_name.slice(-1);
+    var input_key = '';
+
+
+
+    if (direction == 'c') {
+        var l_switch = l_word.find(x => x.includes(targer_word));
+        if (l_switch === undefined) {
+            return;
+        }
+
+        var index = l_switch.indexOf(targer_word);
+        if (index < 0) {
+            return;
+        }
+        else if (index == l_switch.length - 1) {
+            index = 0;
+        }
+        else {
+            index += 1;
+        }
+        input_key = l_switch[index];
+    }
+
+    else if (direction == 'l') {
+        var l_switch = l_word_dakuten.find(x => x.includes(targer_word));
+        if (l_switch === undefined) {
+            return;
+        }
+
+        var index = l_switch.indexOf(targer_word);
+        if (index < 0) {
+            return;
+        }
+        else {
+            index = 1;
+        }
+        input_key = l_switch[index];
+    }
+
+    else if (direction == 'r') {
+        var l_switch = l_word_handakuten.find(x => x.includes(targer_word));
+        if (l_switch === undefined) {
+            return;
+        }
+
+        var index = l_switch.indexOf(targer_word);
+        if (index < 0) {
+            return;
+        }
+        else {
+            index = 2;
+        }
+        input_key = l_switch[index];
+    }
+
+
+    $('#txt_poke_name').val(temp_poke_name.slice(0, -1) + input_key);
+    var word_index = $('#txt_poke_name').val().length - 1;
+    var tile = $($('#input_tile_row').children()[word_index]);
+    tile.text(input_key);
+    tile.addClass('tile_animation');
+    await sleep(100);
+    tile.removeClass('tile_animation');
+}
+
+
+
+$(document).on('touchstart', '#kb_key_switch', onTouchStart_switch);
+$(document).on('touchmove', '#kb_key_switch', onTouchMove_switch);
+$(document).on('touchend', '#kb_key_switch', onTouchEnd_switch);

@@ -73,7 +73,7 @@ input, button, select, textarea {
     width: 90vw;
     max-width: 500px;
     margin: 0 auto;
-    height: calc(var(--vh, 1vh) * 100 - 399px);
+    height: calc(var(--vh, 1vh) * 100 - 407px);
 }
 
 .board {
@@ -148,7 +148,7 @@ input, button, select, textarea {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    height: 32px;
+    height: 40px;
     width: 100%;
 }
 
@@ -254,7 +254,6 @@ input:focus::placeholder {
 
 .transparent {
     opacity: 0;
-    display: none;
     visibility: collapse;
 }
 
@@ -590,6 +589,14 @@ input[type="number"]::-webkit-inner-spin-button {
     justify-content: space-around;
 }
 
+
+
+.settings_bar {
+    width: 95%;
+    margin-top: 20px;
+    border-bottom: 2px solid rgb(225, 225, 225);
+}
+
 @media (max-width: 600px) {
     #header_container {
         height: 28px;
@@ -680,8 +687,15 @@ input[type="number"]::-webkit-inner-spin-button {
         font-size: 19px;
         height: 26px;
     }
-}
 
+    #input_container {
+        height: 32px;
+    }
+
+    #input_tile_row {
+        height: 24px;
+    }
+}
 
 
 
@@ -901,7 +915,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 #input_tile_row {
-    height: 24px;
+    height: 32px;
     padding-bottom: 2px;
     margin-bottom: 2px;
     display: flex;
@@ -934,4 +948,8 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .blank_tile {
     border: solid 1px #C9C9C9 !important;
+}
+
+.display_none {
+    display: none !important;
 }
