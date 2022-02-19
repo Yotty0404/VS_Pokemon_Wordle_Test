@@ -777,7 +777,8 @@ input[type="number"]::-webkit-inner-spin-button {
     height: 23%;
     text-align: center;
     border: 1px solid black;
-    line-height: 19px;
+    line-height: 16px;
+    font-size: 13px;
 }
 
 .kb_key_flick {
