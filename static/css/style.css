@@ -113,7 +113,7 @@ input, button, select, textarea {
 }
 
 .answer_tile {
-    border: solid 1px #838383 !important;
+    border: solid 1px #484848 !important;
 }
 
 .tile {
@@ -155,7 +155,7 @@ input, button, select, textarea {
 #input_container2 {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     width: 330px;
 }
@@ -174,7 +174,7 @@ input, button, select, textarea {
 
 #txt_poke_name {
     height: 18px;
-    width: 150px;
+    width: calc(100% - 80px);
     font-size: 19px;
     margin-top: -5px;
 }
@@ -825,6 +825,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 #kb_btn_enter {
     font-weight: 700;
+    font-size: 14px;
 }
 
 #kb_key_switch {
@@ -840,10 +841,9 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: 20px;
 }
 
-
 #kb_key_switch2 {
     margin-top: -28px;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .kb_key_no_input .kb_key_item {
@@ -858,10 +858,6 @@ input[type="number"]::-webkit-inner-spin-button {
 .gray_for_touch {
     background-color: #8E8E8E;
 }
-
-
-
-
 
 .judge0 {
     background-color: rgb(141, 141, 141) !important;
@@ -891,4 +887,48 @@ input[type="number"]::-webkit-inner-spin-button {
 .judge2_hc {
     background-color: rgb(133,192,249) !important;
     color: white !important;
+}
+
+
+
+#input_container_flick {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: rgb(225, 225, 225);
+}
+
+#input_tile_row {
+    height: 24px;
+    padding-bottom: 2px;
+    margin-bottom: 2px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
+.tile_animation {
+    animation-name: pop;
+    animation-duration: 0.08s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    animation-play-state: running;
+}
+
+@keyframes pop {
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+.blank_tile {
+    border: solid 1px #C9C9C9 !important;
 }

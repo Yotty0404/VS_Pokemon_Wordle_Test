@@ -56,6 +56,12 @@ socket.on('update_info_join', function (data) {
     if (p1_id != '' && p2_id != '') {
         $('#txt_poke_name').prop('disabled', false);
         $('#btn_enter,#kb_key_enter').prop('disabled', false);
+
+        //フリックを入力可能のスタイルに
+        $('.kb_input').find('.kb_key').each(function () {
+            $(this).removeClass('kb_key_no_input');
+        });
+
         show_message('自分のポケモンを入力してください');
     }
 });
@@ -69,6 +75,11 @@ socket.on('opponent_exit', function (data) {
 socket.on('update_answer', function (data) {
     $('#txt_poke_name').prop('disabled', false);
     $('#btn_enter,#kb_key_enter').prop('disabled', false);
+
+    //フリックを入力可能のスタイルに
+    $('.kb_input').find('.kb_key').each(function () {
+        $(this).removeClass('kb_key_no_input');
+    });
 
     if (data.is_p1) {
         update_row('?????', $('#answer_l'));
@@ -88,10 +99,20 @@ socket.on('battle_start', async function () {
     if (p1_id == socket.id) {
         $('#txt_poke_name').prop('disabled', false);
         $('#btn_enter,#kb_key_enter').prop('disabled', false);
+
+        //フリックを入力可能のスタイルに
+        $('.kb_input').find('.kb_key').each(function () {
+            $(this).removeClass('kb_key_no_input');
+        });
     }
     else if (p2_id == socket.id) {
         $('#txt_poke_name').prop('disabled', true);
         $('#btn_enter,#kb_key_enter').prop('disabled', true);
+
+        //フリックを入力不可のスタイルに
+        $('.kb_input').find('.kb_key').each(function () {
+            $(this).addClass('kb_key_no_input');
+        });
     }
 
     $('#battle_start').text('BATTLE START');
@@ -118,6 +139,11 @@ socket.on('judge', function (data) {
         if (p2_id == socket.id) {
             $('#txt_poke_name').prop('disabled', false);
             $('#btn_enter,#kb_key_enter').prop('disabled', false);
+
+            //フリックを入力可能のスタイルに
+            $('.kb_input').find('.kb_key').each(function () {
+                $(this).removeClass('kb_key_no_input');
+            });
         }
 
         $('#img_yajirushi').addClass('turn180');
@@ -136,6 +162,11 @@ socket.on('judge', function (data) {
         if (p1_id == socket.id) {
             $('#txt_poke_name').prop('disabled', false);
             $('#btn_enter,#kb_key_enter').prop('disabled', false);
+
+            //フリックを入力可能のスタイルに
+            $('.kb_input').find('.kb_key').each(function () {
+                $(this).removeClass('kb_key_no_input');
+            });
         }
 
         $('#img_yajirushi').removeClass('turn180');
@@ -213,6 +244,11 @@ socket.on('end', async function (data) {
 
     $('#txt_poke_name').prop('disabled', false);
     $('#btn_enter,#kb_key_enter').prop('disabled', false);
+
+    //フリックを入力可能のスタイルに
+    $('.kb_input').find('.kb_key').each(function () {
+        $(this).removeClass('kb_key_no_input');
+    });
 
     $('#battle_start').text(msg);
     $('#battle_start_container').removeClass('collapse');
@@ -340,6 +376,11 @@ function etner_click() {
         if (!is_end) {
             $('#txt_poke_name').prop('disabled', true);
             $('#btn_enter,#kb_key_enter').prop('disabled', true);
+
+            //フリックを入力不可のスタイルに
+            $('.kb_input').find('.kb_key').each(function () {
+                $(this).addClass('kb_key_no_input');
+            });
         }
 
         $('#txt_poke_name').val('');
@@ -363,6 +404,12 @@ function etner_click() {
             else if (p2_id == socket.id) {
                 socket.emit('btn_click', { room_code: room_code, is_p1: false, poke_name: poke_name });
             }
+        }
+
+        for (var i = 0; i < 5; i++) {
+            var tile = $($('#input_tile_row').children()[i]);
+            tile.text('');
+            tile.addClass('blank_tile');
         }
     });
 }
@@ -599,10 +646,6 @@ function onTouchStart(event) {
     $('.kb_key_d').text($($(event.currentTarget).find('.kb_key_item')[7]).text());
     $('.kb_key_l').text($($(event.currentTarget).find('.kb_key_item')[3]).text());
     $('.kb_key_r').text($($(event.currentTarget).find('.kb_key_item')[5]).text());
-
-
-    /*    var c = $(event.currentTarget).find('.kb_key_item')[4];*/
-    /*    alert($(c).text());*/
 }
 
 function onTouchMove(event) {
@@ -610,7 +653,7 @@ function onTouchMove(event) {
         return;
     }
 
-    direction = '';
+    direction = 'c';
     $('.kb_key_u').addClass('transparent');
     $('.kb_key_d').addClass('transparent');
     $('.kb_key_l').addClass('transparent');
@@ -649,7 +692,7 @@ function onTouchMove(event) {
     }
 }
 
-function onTouchEnd(event) {
+async function onTouchEnd(event) {
     if ($('#txt_poke_name').is(':disabled')) {
         return;
     }
@@ -684,7 +727,16 @@ function onTouchEnd(event) {
     if (temp_poke_name.length >= 5) {
         return;
     }
+
     $('#txt_poke_name').val(temp_poke_name + input_key);
+
+    var index = $('#txt_poke_name').val().length - 1;
+    var tile = $($('#input_tile_row').children()[index]);
+    tile.removeClass('blank_tile');
+    tile.text(input_key);
+    tile.addClass('tile_animation');
+    await sleep(100);
+    tile.removeClass('tile_animation');
 }
 
 //座標を取得
@@ -692,12 +744,17 @@ function getPosition(event) {
     return event.originalEvent.touches[0];
 }
 
-$(document).on('touchstart', '.kb_input .kb_key', onTouchStart);
-$(document).on('touchmove', '.kb_input .kb_key', onTouchMove);
-$(document).on('touchend', '.kb_input .kb_key', onTouchEnd);
+$(document).on('touchstart', '.kb_input .kb_key:not("#kb_key_switch")', onTouchStart);
+$(document).on('touchmove', '.kb_input .kb_key:not("#kb_key_switch")', onTouchMove);
+$(document).on('touchend', '.kb_input .kb_key:not("#kb_key_switch")', onTouchEnd);
 
 
 $(document).on('touchstart', '#kb_key_bs', function () {
+    var index = $('#txt_poke_name').val().length - 1;
+    var tile = $($('#input_tile_row').children()[index]);
+    tile.text('');
+    tile.addClass('blank_tile');
+
     temp_poke_name = $('#txt_poke_name').val();
     $('#txt_poke_name').val(temp_poke_name.slice(0, -1));
 });
@@ -733,7 +790,7 @@ const l_word = [
     , ['ヨ', 'ョ']
 ]
 
-$(document).on('touchstart', '#kb_key_switch', function () {
+$(document).on('touchstart', '#kb_key_switch', async function () {
     if ($('#txt_poke_name').is(':disabled')) {
         return;
     }
@@ -757,6 +814,12 @@ $(document).on('touchstart', '#kb_key_switch', function () {
         index += 1;
     }
 
-
-    $('#txt_poke_name').val(temp_poke_name.slice(0, -1) + l_switch[index]);
+    var input_key = l_switch[index];
+    $('#txt_poke_name').val(temp_poke_name.slice(0, -1) + input_key);
+    var word_index = $('#txt_poke_name').val().length - 1;
+    var tile = $($('#input_tile_row').children()[word_index]);
+    tile.text(input_key);
+    tile.addClass('tile_animation');
+    await sleep(100);
+    tile.removeClass('tile_animation');
 });
