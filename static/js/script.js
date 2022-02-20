@@ -1072,3 +1072,8 @@ async function onTouchEnd_switch(event) {
 $(document).on('touchstart', '#kb_key_switch', onTouchStart_switch);
 $(document).on('touchmove', '#kb_key_switch', onTouchMove_switch);
 $(document).on('touchend', '#kb_key_switch', onTouchEnd_switch);
+
+
+$(document).on('focus', '#txt_poke_name', function (event) {
+    $(window).scrollTop(280);
+});
