@@ -611,8 +611,7 @@ input[type="number"]::-webkit-inner-spin-button {
     }
 
     #board_container {
-        /*        height: calc(100% - 288px);*/
-        height: calc(var(--vh, 1vh) * 100 - 380px);
+        height: calc(var(--vh, 1vh) * 100 - 388px);
     }
 
     #kb_container1 {
@@ -925,8 +924,6 @@ input[type="number"]::-webkit-inner-spin-button {
 
 #input_tile_row {
     height: 32px;
-    padding-bottom: 2px;
-    margin-bottom: 2px;
     display: flex;
     justify-content: center;
     align-items: center;
