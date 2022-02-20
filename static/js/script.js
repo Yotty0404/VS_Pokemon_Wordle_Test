@@ -70,6 +70,7 @@ socket.on('update_info_join', function (data) {
         }
 
         show_message('自分のポケモンを入力してください');
+        $('#btn_exit').prop('disabled', true);
     }
 });
 
@@ -102,7 +103,6 @@ socket.on('update_answer', function (data) {
 socket.on('battle_start', async function () {
     is_in_game = true;
     is_end = false;
-    /*    $('#turn').html('Player1のターン');*/
 
     //プレイヤー判断
     if (p1_id == socket.id) {
@@ -1075,6 +1075,7 @@ $(document).on('touchmove', '#kb_key_switch', onTouchMove_switch);
 $(document).on('touchend', '#kb_key_switch', onTouchEnd_switch);
 
 $(document).on('focus', '#txt_poke_name', async function (event) {
+    var top = $('#input_container2').offset().top - 20;
     $(window).scrollTop(100);
     $('body,html').animate({ scrollTop: 280 }, 400, 'swing');
 });
