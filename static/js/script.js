@@ -363,12 +363,12 @@ $(document).ready(function () {
 
     if (is_flick) {
         $('#tgl_flick').toggleClass('checked');
-        $('#input_container2').addClass('display_none');
-        $('#input_container_flick').removeClass('display_none');
+        $('#footer_text').addClass('display_none');
+        $('#footer_flick').removeClass('display_none');
     }
     else {
-        $('#input_container2').removeClass('display_none');
-        $('#input_container_flick').addClass('display_none');
+        $('#footer_text').removeClass('display_none');
+        $('#footer_flick').addClass('display_none');
     }
 
     Cookies.set('is_flick', cookie, { expires: 30 });
@@ -658,8 +658,8 @@ $(document).on('click', '#tgl_flick', function () {
     if ($(this).children('input').prop('checked')) {
         is_flick = true;
         Cookies.set('is_flick', 'true', { expires: 30 });
-        $('#input_container2').addClass('display_none');
-        $('#input_container_flick').removeClass('display_none');
+        $('#footer_text').addClass('display_none');
+        $('#footer_flick').removeClass('display_none');
 
         if ($('#txt_poke_name').is(':disabled')) {
             return;
@@ -671,8 +671,8 @@ $(document).on('click', '#tgl_flick', function () {
     else {
         is_flick = false;
         Cookies.set('is_flick', 'false', { expires: 30 });
-        $('#input_container2').removeClass('display_none');
-        $('#input_container_flick').addClass('display_none');
+        $('#footer_text').removeClass('display_none');
+        $('#footer_flick').addClass('display_none');
 
         $('.kb_input').find('.kb_key').each(function () {
             $(this).addClass('kb_key_no_input');

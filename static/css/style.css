@@ -145,7 +145,7 @@ input, button, select, textarea {
         display: none;
     }
 
-#input_container {
+.input_container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -971,7 +971,7 @@ input[type="number"]::-webkit-inner-spin-button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #707070;
+    background-color: rgb(198, 198, 198);
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -982,7 +982,7 @@ input[type="number"]::-webkit-inner-spin-button {
     height: 280px;
     touch-action: none;
     z-index: 5;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 #table_50on2 {
@@ -992,9 +992,8 @@ input[type="number"]::-webkit-inner-spin-button {
     flex-wrap: wrap;
     flex-direction: row-reverse;
     justify-content: center;
-    background-color: rgb(198, 198, 198);
-    margin: 5px;
-    padding:5px 2px 5px 2px;
+    margin-top: 5px;
+    padding:2px 0px 2px 0px;
 }
 
 .table_50on_column {
@@ -1010,7 +1009,7 @@ input[type="number"]::-webkit-inner-spin-button {
     .table_50on_column .kb_key_item {
         height: 22px;
         width: 22px;
-        font-size: 15px;
+        font-size: 13px;
         display: flex;
         justify-content: center;
         align-items: center;
