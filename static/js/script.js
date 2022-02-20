@@ -5,6 +5,7 @@
 setHeight();
 window.addEventListener('resize', setHeight);
 
+alert('test');
 
 var poke_data = [];
 
