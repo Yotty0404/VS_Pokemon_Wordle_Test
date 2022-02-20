@@ -1081,5 +1081,3 @@ $(document).on('focus', '#txt_poke_name', async function (event) {
 $(document).on('touchstart', '#txt_room_code', function (event) {
     $('#txt_room_code').focus()
 });
-
-
