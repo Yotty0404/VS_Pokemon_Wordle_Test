@@ -926,7 +926,6 @@ const l_word_handakuten = [
     , ['ホ', 'ボ', 'ポ']
 ]
 
-
 function get_judge_class(judge_no) {
     var class_name = `judge${judge_no}`;
 
@@ -936,7 +935,6 @@ function get_judge_class(judge_no) {
 
     return class_name;
 }
-
 
 function onTouchStart_switch(event) {
     if ($('#txt_poke_name').is(':disabled') || !is_flick) {
