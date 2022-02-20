@@ -151,7 +151,7 @@ input, button, select, textarea {
     justify-content: space-around;
     height: 40px;
     width: 100%;
-    background-color: rgb(225, 225, 225);
+    background-color: rgb(248, 248, 248);
     z-index: 5;
 }
 
