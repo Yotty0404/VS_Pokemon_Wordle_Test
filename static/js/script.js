@@ -53,8 +53,8 @@ socket.on('update_info_join', function (data) {
     $('#player1_name').text(data.p1_user_name);
     $('#player2_name').text(data.p2_user_name);
 
-    $('#twitter').attr('href', $('#twitter').attr('href').replace(/{room_code}/g, temp_room_code));
-    $('#line').attr('href', $('#line').attr('href').replace(/{room_code}/g, temp_room_code));
+    $('#twitter').attr('href', $('#twitter').attr('href').replace(/{room_code}/g, room_code));
+    $('#line').attr('href', $('#line').attr('href').replace(/{room_code}/g, room_code));
     $('#twitter').removeClass('collapse');
     $('#line').removeClass('collapse');
 
