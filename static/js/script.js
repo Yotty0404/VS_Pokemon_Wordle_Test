@@ -376,6 +376,10 @@ $(document).ready(function () {
 
 //JOINボタンクリック
 $(document).on('click', '#btn_join', function () {
+    //2度押し防止
+    $('#btn_join').prop('disabled', true);
+
+
     var temp_user_name = $('#txt_user_name').val();
     var temp_room_code = $('#txt_room_code').val();
 
@@ -1067,16 +1071,11 @@ async function onTouchEnd_switch(event) {
     tile.removeClass('tile_animation');
 }
 
-
-
 $(document).on('touchstart', '#kb_key_switch', onTouchStart_switch);
 $(document).on('touchmove', '#kb_key_switch', onTouchMove_switch);
 $(document).on('touchend', '#kb_key_switch', onTouchEnd_switch);
 
-
 $(document).on('focus', '#txt_poke_name', async function (event) {
-    /*    await sleep(100);*/
     $(window).scrollTop(100);
     $('body,html').animate({ scrollTop: 280 }, 400, 'swing');
-    /*    $(window).scrollTop(280);*/
 });
