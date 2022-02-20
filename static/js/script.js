@@ -53,6 +53,11 @@ socket.on('update_info_join', function (data) {
     $('#player1_name').text(data.p1_user_name);
     $('#player2_name').text(data.p2_user_name);
 
+    $('#twitter').attr('href', $('#twitter').attr('href').replace(/{room_code}/g, temp_room_code));
+    $('#line').attr('href', $('#line').attr('href').replace(/{room_code}/g, temp_room_code));
+    $('#twitter').removeClass('collapse');
+    $('#line').removeClass('collapse');
+
     if (p1_id != '' && p2_id != '') {
         $('#txt_poke_name').prop('disabled', false);
         $('#btn_enter,#kb_key_enter').prop('disabled', false);
@@ -394,12 +399,6 @@ $(document).on('click', '#btn_join', function () {
     if (hasError) {
         return;
     }
-
-    $('#twitter').attr('href', $('#twitter').attr('href').replace(/{room_code}/g, temp_room_code));
-    $('#line').attr('href', $('#line').attr('href').replace(/{room_code}/g, temp_room_code));
-    $('#twitter').removeClass('collapse');
-    $('#line').removeClass('collapse');
-
 
     socket.emit('join', { user_name: temp_user_name, room_code: temp_room_code });
 });
