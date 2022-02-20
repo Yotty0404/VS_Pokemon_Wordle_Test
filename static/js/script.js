@@ -1077,5 +1077,5 @@ $(document).on('touchend', '#kb_key_switch', onTouchEnd_switch);
 $(document).on('focus', '#txt_poke_name', async function (event) {
     var top = $('#input_container2').offset().top - 20;
     $(window).scrollTop(100);
-    $('body,html').animate({ scrollTop: 280 }, 400, 'swing');
+    $('body,html').animate({ scrollTop: 280 }, top, 'swing');
 });
