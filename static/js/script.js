@@ -747,7 +747,7 @@ function onTouchMove(event) {
     $('.kb_key_d').addClass('transparent');
     $('.kb_key_l').addClass('transparent');
     $('.kb_key_r').addClass('transparent');
-    $(event.currentTarget).removeClass('gray_for_touch');
+    $(event.currentTarget).addClass('gray_for_touch');
     $(event.currentTarget).removeClass('transparent');
 
     var new_position = getPosition(event);
@@ -761,6 +761,19 @@ function onTouchMove(event) {
         return;
     }
 
+    var key = $(event.currentTarget).find('.kb_key_item');
+    var input_key = $(key[4]).text();
+    if (input_key == 'ヤ' && (max == l || max == r)) {
+        return;
+    }
+    if (input_key == 'ワ' && (max == l || max == d)) {
+        return;
+    }
+    if (input_key == '♂' && max == d) {
+        return;
+    }
+
+    $(event.currentTarget).removeClass('gray_for_touch');
     $(event.currentTarget).addClass('transparent');
 
     if (max == u) {
@@ -813,7 +826,7 @@ async function onTouchEnd(event) {
     }
 
     temp_poke_name = $('#txt_poke_name').val();
-    if (temp_poke_name.length >= 5) {
+    if (temp_poke_name.length >= 5 || input_key == '') {
         return;
     }
 
