@@ -144,7 +144,7 @@ socket.on('battle_start', async function () {
     clearInterval(timer);
     $('#time').text(TIME_LIMIT);
     $('#bar').stop();
-    $('#bar').width(300);
+    $('#bar').width(260);
     $('#bar').css('background-color', 'rgb(73, 185, 77)');
     timer = setInterval(update_timer, 1000);
     $('#bar').animate({ width: 0 }, { duration: TIME_LIMIT * 1000, easing: "linear", queue: false });
@@ -157,7 +157,7 @@ socket.on('judge', async function (data) {
     clearInterval(timer);
     $('#time').text(TIME_LIMIT);
     $('#bar').stop();
-    $('#bar').width(300);
+    $('#bar').width(260);
     $('#bar').css('background-color', 'rgb(73, 185, 77)');
 
     if (data.is_p1) {
