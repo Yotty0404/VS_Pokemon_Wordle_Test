@@ -100,7 +100,6 @@ def join(json):
 #ENTERボタンクリックで実行
 @socketio.on('btn_click')
 def btn_click(json):
-    print('click')
     global d_info
     room_code = json["room_code"]
     is_p1 = json["is_p1"]
