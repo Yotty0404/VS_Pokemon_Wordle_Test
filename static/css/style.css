@@ -54,6 +54,7 @@ input, button, select, textarea {
     #header_container2-2 .btn {
         height: 30px;
         width: 70px;
+        margin: 2px;
     }
 
 #header_icons {
