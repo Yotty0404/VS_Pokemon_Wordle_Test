@@ -147,7 +147,7 @@ socket.on('battle_start', async function () {
     $('#bar').width('100%');
     $('#bar').css('background-color', 'rgb(73, 185, 77)');
     timer = setInterval(update_timer, 1000);
-    $('#bar').animate({ width: 0 }, { duration: 30000, easing: "linear", queue: false });
+    $('#bar').animate({ width: 0 }, { duration: TIME_LIMIT * 1000, easing: "linear", queue: false });
 });
 
 //判定を反映
@@ -215,7 +215,7 @@ socket.on('judge', async function (data) {
 
     if (!is_end) {
         timer = setInterval(update_timer, 1000);
-        $('#bar').animate({ width: 0 }, { duration: TIME_LIMIT * 1000, easing: "linear", queue: false });
+        $('#bar').animate({ width: '0px' }, { duration: TIME_LIMIT * 1000, easing: "linear", queue: false });
     }
 });
 
