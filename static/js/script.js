@@ -38,6 +38,8 @@ var is_flick = true;
 var is_time_over = false;
 var timer = '';
 
+const TIME_LIMIT = 30;
+
 //満室エラー
 socket.on('full_error', function (data) {
     show_message('満室です');
@@ -139,12 +141,25 @@ socket.on('battle_start', async function () {
     $('#battle_start').addClass('transparent');
 
     //タイマースタート
+    clearInterval(timer);
+    $('#time').text(TIME_LIMIT);
+    $('#bar').stop();
+    $('#bar').width('100%');
+    $('#bar').css('background-color', 'rgb(73, 185, 77)');
     timer = setInterval(update_timer, 1000);
-    $('#bar').animate({ width: 0 }, { duration: 30000, easing: "linear", queue: false });
+    $('#bar').animate({ width: 0 }, { duration: TIME_LIMIT * 1000, easing: "linear", queue: false });
 });
 
 //判定を反映
 socket.on('judge', async function (data) {
+    //タイマーリセット
+    is_time_over = false;
+    clearInterval(timer);
+    $('#time').text(TIME_LIMIT);
+    $('#bar').stop();
+    $('#bar').width('100%');
+    $('#bar').css('background-color', 'rgb(73, 185, 77)');
+
     if (data.is_p1) {
         var row = $('<div class="row_r">');
         $('#predict_r_container').append(row);
@@ -196,17 +211,11 @@ socket.on('judge', async function (data) {
         $('#img_yajirushi').removeClass('turn180');
     }
 
-    //タイマーリセット
-    clearInterval(timer);
-    $('#time').text('30');
-    $('#bar').stop();
-    $('#bar').width('100%');
-    $('#bar').css('background-color', 'rgb(73, 185, 77)');
     await sleep(2000);
 
     if (!is_end) {
         timer = setInterval(update_timer, 1000);
-        $('#bar').animate({ width: 0 }, { duration: 30000, easing: "linear", queue: false });
+        $('#bar').animate({ width: 0 }, { duration: TIME_LIMIT * 1000, easing: "linear", queue: false });
     }
 });
 
@@ -453,8 +462,6 @@ function etner_click() {
         if (is_time_over) {
             poke_name = '     ';
         }
-
-        is_time_over = false;
 
         if (!is_end) {
             $('#txt_poke_name').prop('disabled', true);
@@ -1128,8 +1135,13 @@ function update_timer() {
         $('#time').text('');
         clearInterval(timer);
         is_time_over = true;
-        $('#btn_enter').trigger("click");
-        $('#kb_key_enter').trigger("touchstart");
+
+        if (is_flick) {
+            $('#kb_key_enter').trigger("touchstart");
+        }
+        else {
+            $('#btn_enter').trigger("click");
+        }
         return;
     }
 
