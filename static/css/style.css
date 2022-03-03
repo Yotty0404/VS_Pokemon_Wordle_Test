@@ -1013,7 +1013,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 #bar {
     height: 24px;
-    width: 260px;
+    width: 240px;
     background-color: rgb(73, 185, 77);
     transition: all .3s;
 }
