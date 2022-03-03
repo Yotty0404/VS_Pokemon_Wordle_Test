@@ -131,6 +131,7 @@ socket.on('battle_start', async function () {
     }
 
     $('#room_info_container').addClass('display_none');
+    $('#time').text(TIME_LIMIT);
     $('#timer_container').removeClass('display_none');
 
     $('#battle_start').text('BATTLE START');
