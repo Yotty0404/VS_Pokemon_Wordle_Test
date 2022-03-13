@@ -1050,29 +1050,38 @@ input[type="number"]::-webkit-inner-spin-button {
     outline: none;
     margin: 10px;
     height: 12px;
-/*    width: calc(100% - 30px);*/
+    /*    width: calc(100% - 30px);*/
     background: rgb(73, 185, 77);
     border: solid 2px #e4ffd7;
     border-radius: 0px;
-    overflow:visible;
+    overflow: visible;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    touch-action: none;
 }
     /* WebKit向けのつまみ */
     #slider::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
         background: white;
-        width: 24px;
-        height: 24px;
+        width: 30px;
+        height: 30px;
         border-radius: 6px;
         border: 1px solid #c8c8c8;
         box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.4);
-        margin-top:-2px;
+        margin-top: -4px;
     }
     /* Moz向けのつまみ */
     #slider::-moz-range-thumb {
         background: white;
-        width: 24px;
-        height: 24px;
+        width: 30px;
+        height: 30px;
         border-radius: 6px;
         box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.4);
         border: none; /* デフォルトの線を消す */
