@@ -195,7 +195,7 @@ input, button, select, textarea {
     border: solid 2px #000000;
     background-color: #F0F0F0;
     border-radius: 3px;
-    font-size: 22px;
+    font-size: 18px;
     padding: 4px;
     transform: translateY(2px);
 }
@@ -321,6 +321,7 @@ input:focus::placeholder {
     align-items: center;
     z-index: 100;
     transition: all .5s;
+    flex-direction: column;
 }
 
 .modal {
@@ -337,7 +338,7 @@ input:focus::placeholder {
 
 .login_obj {
     width: 85%;
-    margin: 10px;
+    margin: 6px;
 }
 
 .gray_container {
@@ -1018,3 +1019,69 @@ input[type="number"]::-webkit-inner-spin-button {
     background-color: rgb(73, 185, 77);
     transition: all .3s;
 }
+
+
+
+
+
+.create_room_container {
+    background-color: #FED5A2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: -30px;
+}
+
+.create_room_subject {
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 10px;
+    margin: 14px 0px 0px 10px;
+}
+
+
+
+
+
+#slider {
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    outline: none;
+    margin: 10px;
+    height: 12px;
+/*    width: calc(100% - 30px);*/
+    background: rgb(73, 185, 77);
+    border: solid 2px #e4ffd7;
+    border-radius: 0px;
+    overflow:visible;
+}
+    /* WebKit向けのつまみ */
+    #slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        background: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        border: 1px solid #c8c8c8;
+        box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.4);
+        margin-top:-2px;
+    }
+    /* Moz向けのつまみ */
+    #slider::-moz-range-thumb {
+        background: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.4);
+        border: none; /* デフォルトの線を消す */
+    }
+    /* Firefoxで点線が周りに表示されてしまう問題の解消 */
+    #slider::-moz-focus-outer {
+        border: 0;
+    }
+    /* つまみをドラッグしているときのスタイル */
+    #slider:active::-webkit-slider-thumb {
+        box-shadow: 2px 3px 6px 1px rgba(0, 0, 0, 0.5);
+    }

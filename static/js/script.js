@@ -1166,3 +1166,12 @@ function update_timer() {
 function reset_fontsize() {
     $('#time').animate({ fontSize: 16 }, 400);
 }
+
+
+
+
+
+$(document).on('input', '#slider', function () {
+    var value = $(this).val();
+    $('#time_limit').text(value);
+});
