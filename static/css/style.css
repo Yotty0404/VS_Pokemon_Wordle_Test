@@ -1057,6 +1057,13 @@ input[type="number"]::-webkit-inner-spin-button {
     justify-content: space-between;
 }
 
+    .create_room_container_row:nth-child(3) {
+        margin: -4px 0px 0px 0px;
+    }
+    .create_room_container_row:nth-child(5) {
+        margin: -10px 0px 0px 0px;
+    }
+
 #tgl_handicap {
     margin-right: 0px;
 }
