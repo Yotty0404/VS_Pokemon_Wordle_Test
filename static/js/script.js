@@ -662,9 +662,10 @@ $(document).on('click', '.btn_help', function () {
 });
 
 //設定ボタンクリック
-$(document).on('click', '.btn_settings', function () {
+$(document).on('click', '.btn_settings', async function () {
     $('#settings_container').removeClass('transparent');
 
+    await sleep(200);
     update_row_by_judge(get_3poke_name(), $('#example_row'), [1, 2, 0]);
 });
 
