@@ -1021,9 +1021,6 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 
-
-
-
 .create_room_container {
     background-color: rgb(246, 241, 182);
     display: flex;
@@ -1036,14 +1033,25 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .create_room_subject {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
     margin-left: 10px;
     margin: 14px 0px 0px 0px;
 }
 
-.create_room_container_row {
+.create_room_container_title {
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-bottom: 2px solid rgb(127, 127, 127);
+    font-size: 18px;
+    font-weight: 900;
+    margin: 14px 0px 0px 0px;
+}
+
+.create_room_container_row {
+    width: 80%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -1054,8 +1062,6 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 
-
-
 #slider, #slider_opp {
     -webkit-appearance: none;
     appearance: none;
@@ -1063,7 +1069,7 @@ input[type="number"]::-webkit-inner-spin-button {
     outline: none;
     margin: 10px 0px 20px 0px;
     height: 12px;
-    width: calc(100% - 3px);
+    width: calc(80% - 3px);
     background: rgb(73, 185, 77);
     border: solid 2px #e4ffd7;
     border-radius: 0px;
