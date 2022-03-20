@@ -410,6 +410,18 @@ $(document).ready(function () {
     }
 
     Cookies.set('is_flick', cookie, { expires: 30 });
+
+    //ユーザー名
+    cookie = Cookies.get('user_name')
+    if (cookie === undefined || !cookie) {
+        //ユーザー名が登録されていない場合、設定画面を表示
+        show_message('ユーザー名を登録してください');
+        $('#login_btn_settings').click();
+    }
+    else {
+        $('#txt_user_name').val(cookie);
+        Cookies.set('user_name', cookie, { expires: 30 });
+    }
 });
 
 //JOINボタンクリック
@@ -620,6 +632,23 @@ $(document).on('click', '.btn_settings', function () {
     $('#settings_container').removeClass('transparent');
 
     update_row_by_judge(get_3poke_name(), $('#example_row'), [1, 2, 0]);
+});
+
+
+//×ボタンクリック(設定画面)
+$(document).on('click', '#settings_btn_close', function (e) {
+    var temp_user_name = $('#txt_user_name').val();
+
+    //ユーザー名が未入力の場合、後続の処理をキャンセル
+    if (temp_user_name == '') {
+        $('#txt_user_name').addClass('txt_error');
+        e.stopImmediatePropagation();
+    }
+    else {
+        $('#txt_user_name').removeClass('txt_error');
+    }
+
+    Cookies.set('user_name', temp_user_name, { expires: 30 });
 });
 
 //×ボタンクリック
@@ -1173,5 +1202,11 @@ function reset_fontsize() {
 
 $(document).on('input', '#slider', function () {
     var value = $(this).val();
-    $('#time_limit').text(value);
+    $('#time_limit').text(value + '秒');
+});
+
+
+$(document).on('input', '#slider_opp', function () {
+    var value = $(this).val();
+    $('#time_limit_opp').text(value + '秒');
 });
