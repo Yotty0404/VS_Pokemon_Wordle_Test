@@ -16,8 +16,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons%7CMaterial+Icons+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/themes/smoothness/jquery-ui.css">
 
-    <link rel="stylesheet" href="static/css/style.css?20220321-004">
-    <script src="static/js/script.js?20220321-004" charset="shift_jis"></script>
+    <link rel="stylesheet" href="static/css/style.css?20220321-005">
+    <script src="static/js/script.js?20220321-005" charset="shift_jis"></script>
 
     <!-- FB Meta Tags -->
     <meta property="og:url" content="https://www.vs-pokemon-wordle.com">
@@ -109,8 +109,10 @@
                 </div>
                 <div id="time_limit_opp" class="value create_room_subject">30秒</div>
             </div>
-            <!--<div id="upper_time_limit_opp" />-->
-            <input id="slider_opp" type="range" min="10" max="120" step="10" value="30">
+            <input id="slider_opp" type="range" min="10" max="120" step="10" value="30" disabled="true">
+            <div id="upper_time_limit_container">
+                <div id="upper_time_limit_opp"></div>
+            </div>
             <input id="btn_create" type="submit" value="CREATE ROOM" class="btn login_obj">
         </div>
     </div>

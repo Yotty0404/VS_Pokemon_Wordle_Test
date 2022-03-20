@@ -432,7 +432,7 @@ $(document).ready(function () {
     cookie = Cookies.get('user_name')
     if (cookie === undefined || !cookie) {
         //ユーザー名が登録されていない場合、設定画面を表示
-        show_message('ユーザー名を登録してください');
+        show_message('ユーザー名を入力してください');
         is_first_access = true;
         $('#login_btn_settings').click();
     }
@@ -721,6 +721,18 @@ $(document).on('click', '.toggle', function () {
     }
 });
 
+//ハンディキャップ入力クリック
+$(document).on('click', '#tgl_handicap', function () {
+    if ($(this).children('input').prop('checked')) {
+        $('#slider_opp').prop('disabled', false);
+        $('#upper_time_limit_opp').hide();
+    }
+    else {
+        $('#slider_opp').prop('disabled', true);
+        $('#upper_time_limit_opp').show();
+    }
+});
+
 //ハイコントラストモードクリック
 $(document).on('click', '#tgl_high_contrast_mode', function () {
     if ($(this).children('input').prop('checked')) {
@@ -776,7 +788,6 @@ $(document).on('click', '#tgl_high_contrast_mode', function () {
         }
     })
 });
-
 
 //フリック入力クリック
 $(document).on('click', '#tgl_flick', function () {
