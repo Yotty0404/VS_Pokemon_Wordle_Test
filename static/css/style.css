@@ -1025,7 +1025,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 
 .create_room_container {
-    background-color: #FFD9A8;
+    background-color: rgb(246, 241, 182);
     display: flex;
     flex-direction: column;
     justify-content: space-between;

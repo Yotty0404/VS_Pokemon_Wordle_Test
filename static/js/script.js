@@ -36,12 +36,20 @@ var is_end = false;
 var is_high_contrast = false;
 var is_flick = true;
 var is_time_over = false;
+var p1_time_limit = '';
+var p2_time_limit = '';
+
 var timer = '';
 
-const TIME_LIMIT = 30;
 
+//部屋が存在しないエラー
+socket.on('no_room_error', function (data) {
+    $('#btn_join').prop('disabled', false);
+    show_message('部屋が存在しません');
+});
 //満室エラー
 socket.on('full_error', function (data) {
+    $('#btn_join').prop('disabled', false);
     show_message('満室です');
 });
 
@@ -52,6 +60,8 @@ socket.on('update_info_join', function (data) {
     room_code = data.room_code;
     p1_id = data.p1_id;
     p2_id = data.p2_id;
+    p1_time_limit = data.p1_time_limit;
+    p2_time_limit = data.p2_time_limit;
 
     $('#room_info').text('部屋コード：' + room_code);
     $('#player1_name').text(data.p1_user_name);
@@ -131,7 +141,7 @@ socket.on('battle_start', async function () {
     }
 
     $('#room_info_container').addClass('display_none');
-    $('#time').text(TIME_LIMIT);
+    $('#time').text(p1_time_limit);
     $('#timer_container').removeClass('display_none');
 
     $('#battle_start').text('BATTLE START');
@@ -143,25 +153,19 @@ socket.on('battle_start', async function () {
 
     //タイマースタート
     clearInterval(timer);
-    $('#time').text(TIME_LIMIT);
     $('#bar').stop();
     $('#bar').width(230);
     $('#bar').css('background-color', 'rgb(73, 185, 77)');
     timer = setInterval(update_timer, 1000);
-    $('#bar').animate({ width: 0 }, { duration: TIME_LIMIT * 1000, easing: "linear", queue: false });
+    $('#bar').animate({ width: 0 }, { duration: p1_time_limit * 1000, easing: "linear", queue: false });
 });
 
 //判定を反映
 socket.on('judge', async function (data) {
-    //タイマーリセット
-    is_time_over = false;
-    clearInterval(timer);
-    $('#time').text(TIME_LIMIT);
-    $('#bar').stop();
-    $('#bar').width(230);
-    $('#bar').css('background-color', 'rgb(73, 185, 77)');
+    var time_limit = null;
 
     if (data.is_p1) {
+        time_limit = p2_time_limit;
         var row = $('<div class="row_r">');
         $('#predict_r_container').append(row);
         for (var i = 0; i < 5; i++) {
@@ -187,6 +191,7 @@ socket.on('judge', async function (data) {
         $('#img_yajirushi').addClass('turn180');
     }
     else {
+        time_limit = p1_time_limit;
         var row = $('<div class="row_l">');
         $('#predict_l_container').append(row);
         for (var i = 0; i < 5; i++) {
@@ -212,11 +217,20 @@ socket.on('judge', async function (data) {
         $('#img_yajirushi').removeClass('turn180');
     }
 
+
+    //タイマーリセット
+    is_time_over = false;
+    clearInterval(timer);
+    $('#time').text(time_limit);
+    $('#bar').stop();
+    $('#bar').width(230);
+    $('#bar').css('background-color', 'rgb(73, 185, 77)');
+
     await sleep(2000);
 
     if (!is_end) {
         timer = setInterval(update_timer, 1000);
-        $('#bar').animate({ width: 0 }, { duration: TIME_LIMIT * 1000, easing: "linear", queue: false });
+        $('#bar').animate({ width: 0 }, { duration: time_limit * 1000, easing: "linear", queue: false });
     }
 });
 
@@ -424,19 +438,31 @@ $(document).ready(function () {
     }
 });
 
+//CREATEボタンクリック
+$(document).on('click', '#btn_create', function () {
+    var temp_user_name = $('#txt_user_name').val();
+
+    //2度押し防止
+    $('#btn_create').prop('disabled', true);
+
+    p1_time_limit = $('#slider').val();
+    p2_time_limit = null;
+    if ($('#chk_handicap').prop('checked')) {
+        p2_time_limit = $('#slider_opp').val();
+    }
+    else {
+        p2_time_limit = p1_time_limit;
+    }
+
+    socket.emit('create', { user_name: temp_user_name, p1_time_limit: p1_time_limit, p2_time_limit: p2_time_limit });
+});
+
 //JOINボタンクリック
 $(document).on('click', '#btn_join', function () {
     var temp_user_name = $('#txt_user_name').val();
     var temp_room_code = $('#txt_room_code').val();
 
     var hasError = false;
-    if (temp_user_name == '') {
-        $('#txt_user_name').addClass('txt_error');
-        hasError = true;
-    }
-    else {
-        $('#txt_user_name').removeClass('txt_error');
-    }
 
     if (temp_room_code == '') {
         $('#txt_room_code').addClass('txt_error');
@@ -546,6 +572,14 @@ async function check_poke_name(poke_name) {
 
     return rtn;
 }
+
+
+//部屋コードでEnterキー押下時、JOINボタンクリックを発火
+$(document).on('keydown', '#txt_room_code', function (event) {
+    if (event.key === 'Enter') {
+        $('#btn_join').click();
+    }
+});
 
 //テキストボックスでEnterキー押下時、ボタンクリックを発火
 $(document).on('keydown', '#txt_poke_name', function (event) {
@@ -1175,12 +1209,12 @@ function update_timer() {
         return;
     }
 
-    if (time == 20) {
-        $('#bar').animate({ backgroundColor: "rgb(250, 230, 0)" }, { duration: 5000, easing: "easeOutQuart", queue: false });
+    if (time == 19) {
+        $('#bar').animate({ backgroundColor: "rgb(250, 230, 0)" }, { duration: 2000, easing: "easeOutQuart", queue: false });
     }
 
-    if (time == 10) {
-        $('#bar').animate({ backgroundColor: "rgb(245,121,58)" }, { duration: 5000, easing: "easeOutQuart", queue: false });
+    if (time == 9) {
+        $('#bar').animate({ backgroundColor: "rgb(245,121,58)" }, { duration: 2000, easing: "easeOutQuart", queue: false });
     }
 
 
@@ -1195,9 +1229,6 @@ function update_timer() {
 function reset_fontsize() {
     $('#time').animate({ fontSize: 16 }, 400);
 }
-
-
-
 
 
 $(document).on('input', '#slider', function () {
