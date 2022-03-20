@@ -41,6 +41,9 @@ var p2_time_limit = '';
 
 var timer = '';
 
+//初アクセスかどうか
+is_first_access = false
+
 
 //部屋が存在しないエラー
 socket.on('no_room_error', function (data) {
@@ -430,6 +433,7 @@ $(document).ready(function () {
     if (cookie === undefined || !cookie) {
         //ユーザー名が登録されていない場合、設定画面を表示
         show_message('ユーザー名を登録してください');
+        is_first_access = true;
         $('#login_btn_settings').click();
     }
     else {
@@ -665,7 +669,12 @@ $(document).on('click', '.btn_help', function () {
 $(document).on('click', '.btn_settings', async function () {
     $('#settings_container').removeClass('transparent');
 
-    await sleep(200);
+    //初回起動時、jsonの読み込み時間を考慮
+    if (is_first_access) {
+        await sleep(200);
+    }
+
+    is_first_access = false;
     update_row_by_judge(get_3poke_name(), $('#example_row'), [1, 2, 0]);
 });
 
