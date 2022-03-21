@@ -307,7 +307,13 @@ input:focus::placeholder {
 }
 
 #login {
-    padding-top: 20px;
+    margin-top: -20px;
+    padding-top: 0px;
+}
+
+#txt_room_code {
+    margin-top: 14px;
+    width: 80%;
 }
 
 .modal_container {
@@ -529,6 +535,11 @@ input[type="number"]::-webkit-inner-spin-button {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+}
+
+#btn_settings_ok {
+    margin-top: 20px;
+    width: 60px;
 }
 
 .toggle {
@@ -1026,9 +1037,8 @@ input[type="number"]::-webkit-inner-spin-button {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-top: -30px;
-    padding-top: 0px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 30px;
     overflow: hidden;
 }
 
@@ -1050,6 +1060,14 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 14px 0px 0px 0px;
 }
 
+.create_room_container > .create_room_container_title {
+    margin: 0px 0px 0px 0px;
+}
+
+#login > .create_room_container_title {
+    margin: 12px 0px 0px 0px;
+}
+
 .create_room_container_row {
     width: 80%;
     display: flex;
@@ -1060,6 +1078,7 @@ input[type="number"]::-webkit-inner-spin-button {
     .create_room_container_row:nth-child(3) {
         margin: -4px 0px 0px 0px;
     }
+
     .create_room_container_row:nth-child(5) {
         margin: -10px 0px 0px 0px;
     }

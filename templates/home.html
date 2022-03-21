@@ -16,8 +16,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons%7CMaterial+Icons+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/themes/smoothness/jquery-ui.css">
 
-    <link rel="stylesheet" href="static/css/style.css?20220321-007">
-    <script src="static/js/script.js?20220321-007" charset="shift_jis"></script>
+    <link rel="stylesheet" href="static/css/style.css?20220321-008">
+    <script src="static/js/script.js?20220321-008" charset="shift_jis"></script>
 
     <!-- FB Meta Tags -->
     <meta property="og:url" content="https://www.vs-pokemon-wordle.com">
@@ -75,17 +75,12 @@
         <div class="gray_container">
         </div>
 
-        <div id="login" class="modal">
+        <div class="create_room_container modal">
             <div id="login_icons">
                 <div id="login_btn_help" class="material-icons-outlined btn_help btn_icon">help_outline</div>
                 <div id="login_btn_settings" class="material-icons-outlined btn_settings btn_icon">settings</div>
             </div>
-            <input id="txt_room_code" class="textbox login_obj" type="number" name="room_code" placeholder="4桁の部屋コード" oninput="slice_max_length(this, 4)" pattern="\d*" value={{ room_code }}>
-            <input id="btn_join" type="submit" value="JOIN ROOM" class="btn login_obj">
 
-        </div>
-
-        <div class="create_room_container modal">
             <div class="create_room_container_title">
                 <div>部屋を新規作成</div>
             </div>
@@ -118,6 +113,16 @@
                 <div id="upper_time_limit_opp"></div>
             </div>
             <input id="btn_create" type="submit" value="CREATE ROOM" class="btn login_obj">
+        </div>
+
+        <div id="login" class="modal">
+            <div class="create_room_container_title">
+                <div>入室</div>
+            </div>
+
+            <input id="txt_room_code" class="textbox login_obj" type="number" name="room_code" placeholder="4桁の部屋コード" oninput="slice_max_length(this, 4)" pattern="\d*" value={{ room_code }}>
+            <input id="btn_join" type="submit" value="JOIN ROOM" class="btn login_obj">
+
         </div>
     </div>
 
@@ -726,6 +731,8 @@
                     <input id="chk_flick" type="checkbox" name="check" />
                 </div>
             </div>
+
+            <input id="btn_settings_ok" type="submit" value="OK" class="btn login_obj">
         </div>
     </div>
 </body>

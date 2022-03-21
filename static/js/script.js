@@ -680,7 +680,7 @@ $(document).on('click', '.btn_settings', async function () {
 
 
 //×ボタンクリック(設定画面)
-$(document).on('click', '#settings_btn_close', function (e) {
+$(document).on('click', '#settings_btn_close, #btn_settings_ok', function (e) {
     var temp_user_name = $('#txt_user_name').val();
 
     //ユーザー名が未入力の場合、後続の処理をキャンセル
@@ -698,6 +698,21 @@ $(document).on('click', '#settings_btn_close', function (e) {
 //×ボタンクリック
 $(document).on('click', '.window_btn_close', function () {
     $('#help_container').addClass('transparent');
+    $('#settings_container').addClass('transparent');
+
+    //設定画面のタイルの色を初期化
+    $('#example_row').find('div').each(function (index, tile) {
+        $(tile).removeClass('judge0');
+        $(tile).removeClass('judge1');
+        $(tile).removeClass('judge2');
+        $(tile).removeClass('judge0_hc');
+        $(tile).removeClass('judge1_hc');
+        $(tile).removeClass('judge2_hc');
+    })
+});
+
+//設定画面OKボタンクリック
+$(document).on('click', '#btn_settings_ok', function () {
     $('#settings_container').addClass('transparent');
 
     //設定画面のタイルの色を初期化
