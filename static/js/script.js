@@ -736,7 +736,7 @@ $(document).on('click', '.toggle', function () {
     }
 });
 
-//ハンディキャップ入力クリック
+//ハンディキャップクリック
 $(document).on('click', '#tgl_handicap', function () {
     if ($(this).children('input').prop('checked')) {
         $('#slider_opp').prop('disabled', false);
